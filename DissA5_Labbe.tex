@@ -1,0 +1,117 @@
+%% Vorlage für Dissertationen
+
+% Verbesserte Silbentrennung im deutschen nach dem aktuellen Stand
+%\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+% Dokumentenklasse laden (keine Punkte hinter der Nummerierung, Schriftgröße 10pt, Sprachpakete english und neue deutsche Rechtschreibung einbinden (deutsch ist Standard))
+% auch hier Seitengröße einstellen, indem a4paper durch a5paper oder umgekehrt ersetzt wird.
+\documentclass[numbers=noenddot,a5paper,10pt,english]{scrbook}
+%\documentclass[halfparskip,numbers=noenddot,a5paper,10pt,english,ngerman]{scrbook}
+
+% Weitere Pakete hier einfügen
+\usepackage{booktabs}
+\usepackage{wrapfig}
+\usepackage{bm}
+
+% Fixsubsubsection
+\setcounter{secnumdepth}{\subsubsectionnumdepth}
+
+% --
+
+% -------------------- Allgemeine Dokumenteneinstellungen ------------------------------
+% pdf-Titel
+\newcommand{\pdftitle}{A Discrete Model for the Prediction of Impact Loads from Railway Traffic}
+% Autor
+\newcommand{\autor}{Sebastián\ Federico\ Labbé\ Romo}
+% Option und Pakete einbinden
+\input{dokOptions}
+% Titel
+\newcommand{\headtitle}{A Discrete Model for the Prediction of Impact Loads from Railway Traffic}
+\newcommand{\coo}{CO\textsubscript{2}\ }
+
+% -------------------- Hauptdokument ------------------------------
+\begin{document}
+
+	\pagenumbering{gobble}
+	% Voreingestellter Seitenstil verwenden
+	\pagestyle{scrheadings}
+	% Römische Seitennummerierung verwenden
+	
+	% Seitenzahl mit 5 beginnen (KSP setzt 4 beschriftete Seiten davor)
+	%\setcounter{page}{5}
+
+	% Vorwort einfügen
+	\markboth{Preface}{Preface}								% mehrseitiges Vorwort deswegen Kopfzeile setzen mit Namen "Vorwort"
+	%\include{content/preface}
+	% Deckblatt der Dissertation einfügen
+	\cleardoublepage
+	\include{content/deckblatt}
+	\cleardoublepage
+	% deutsche Kurzfassung einfügen
+	\markboth{Kurzfassung}{Kurzfassung}				% mehrseitige Kurzfassung deswegen Kopfzeile setzen mit Namen "Kurzfassung"
+	\pagenumbering{roman}
+	\setcounter{page}{1}
+	\include{content/abstract}
+	% englische Kurzfassung einfügen
+	\markboth{Abstract}{Abstract}							% mehrseitiger Abstract deswegen Kopfzeile setzen mit Namen "Abstract"
+	\include{content/abstractEN}
+	% Danksagung einfügen
+	\markboth{Danksagung}{Danksagung}					% mehrseitige Danksagung deswegen Kopfzeile setzen mit Namen "Danksagung"
+	\include{content/acknowledgment}
+
+
+
+	% Inhaltsverzeichnis
+	%\begin{spacing}{1.29}										% eventuell ändern um eine schönere Seitendarstellung zu erhalten
+	\tableofcontents
+	%\end{spacing}
+			
+	% Abkürzungsverzeichnis einfügen
+	\cleardoublepage
+	\markboth{\nomname}{\nomname}							% mehrseitiges Abkürzungsverzeichnis deswegen Kopfzeile setzen mit Namen "Abkürzungs- und Symbolverzeichnis"
+	\input{content/symbols}										% Datei mit der Auflistung der Symbole und Abkürzungen
+	\printnomenclature
+
+	% Haupteil mit den Kapiteln
+	\mainmatter
+		
+		% Zeilenabstand innerhalb Tabellen auf 1,4 setzen
+		\renewcommand{\arraystretch}{1.4}
+		% Arabische Seitennummerierung verwenden
+		\pagenumbering{arabic}
+
+		\include{content/1introduction}
+		\include{content/2stateoftheart}
+		\include{content/3descriptionproblem}
+		\include{content/4modeling}
+		\include{content/5simulations}
+		\include{content/6appliedexamples}
+		\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ \  #1}{\thechapter\ \  #1}}	% Setzt Kapitelüberschrift auch auf rechte Seite der Kopfzeile, da keine Unterkapitel
+		\include{content/7summary}
+		\include{content/8ausblick}
+
+	% Anhang
+	\appendix
+
+		% Anhang
+		\include{content/appendix}
+
+		% Abbildungsverzeichnis
+		\addcontentsline{toc}{chapter}{List of Figures} 
+		\listoffigures
+		% Tabellenverzeichnis
+		\addcontentsline{toc}{chapter}{List of Tables}
+		\listoftables
+		% Algo
+		\listofalgorithms
+		% Formelverzeichnis
+		% \listofequations
+		% Literaturverzeichnis
+		\setlength{\parskip}{0.4\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip} % Änderung der Abstände zwischen den Einträgen
+		\addcontentsline{toc}{chapter}{Bibliography} 
+		\bibliography{content/bibliography}
+
+		% Lebenslauf für einzureichende Version
+		%\cleardoublepage
+		%\include{content/lebenslauf}
+
+\end{document}
