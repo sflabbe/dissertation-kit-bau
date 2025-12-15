@@ -1,133 +1,117 @@
-%% Template for Dissertations
+%%% Dissertation Template - Legacy DIN 1505 Version
+%%% Created: 2025-12-15
+%%% Optimized for pdfLaTeX with A5 paper format
 
-% Improved German hyphenation according to current standard
-%\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+% Document class with KOMA-Script
+\documentclass[numbers=noenddot,a5paper,10pt,english,cleardoublepage=empty]{scrbook}
 
-% Load document class
-% - No dots after numbering
-% - Font size 10pt
-% - Language packages: English and German (new spelling)
-% - Page size: a5paper (change to a4paper if needed)
-\documentclass[numbers=noenddot,a5paper,10pt,english]{scrbook}
-%\documentclass[halfparskip,numbers=noenddot,a5paper,10pt,english,ngerman]{scrbook}
+% PDF settings (PDF 1.7 compatibility, compression, suppress warnings)
+\pdfminorversion=7
+\pdfobjcompresslevel=3
+\pdfsuppresswarningpagegroup=1
 
-% Additional packages
+% Subsubsection numbering depth
+\setcounter{secnumdepth}{\subsubsectionnumdepth}
+
+% Essential packages
+\usepackage{auxhook}
 \usepackage{booktabs}
 \usepackage{wrapfig}
 \usepackage{bm}
 
-% Fix subsubsection numbering
-\setcounter{secnumdepth}{\subsubsectionnumdepth}
+% Custom hyphenation rules
+\hyphenation{guide-line non-con-ser-va-tive con-ser-va-tive tem-po-ral}
+\hyphenation{ve-loc-i-ty ve-loc-i-ties en-er-gy-ab-sorb-ing ab-sorb-ing}
+\hyphenation{de-pen-den-cy}
 
-% -------------------- General Document Settings ------------------------------
-
-% PDF title
+% Document metadata
 \newcommand{\pdftitle}{Optimization Methods for Complex Systems}
-
-% Author (placeholder - replace with actual author name)
 \newcommand{\autor}{Author Name}
+\newcommand{\headtitle}{Optimization Methods for Complex Systems}
+\newcommand{\coo}{CO\textsubscript{2}\ }
 
-% Load options and packages
+% Load document options and packages
 \input{dokOptions}
 
-% Document title
-\newcommand{\headtitle}{Optimization Methods for Complex Systems}
-
-% -------------------- Main Document ------------------------------
+% ==================== MAIN DOCUMENT ====================
 \begin{document}
 
-	% Disable page numbering initially
-	\pagenumbering{gobble}
+% Unnumbered front matter (title pages)
+\hypersetup{pageanchor=false}
+\pagenumbering{gobble}
+\pagestyle{scrheadings}
 
-	% Use predefined page style
-	\pagestyle{scrheadings}
+% Cover page
+\cleardoublepage
+\include{content/deckblatt}
+\cleardoublepage
 
-	% Start page numbering at 5 (KSP adds 4 labeled pages before)
-	%\setcounter{page}{5}
+% Begin Roman numeral pagination
+\pagenumbering{roman}
+\setcounter{page}{1}
+\hypersetup{pageanchor=true}
 
-	% Preface
-	\markboth{Preface}{Preface}
-	%\include{content/preface}
+% German abstract
+\markboth{Kurzfassung}{Kurzfassung}
+\selectlanguage{ngerman}
+\include{content/abstract}
 
-	% Title page
-	\cleardoublepage
-	\include{content/deckblatt}
-	\cleardoublepage
+% English abstract
+\markboth{Abstract}{Abstract}
+\selectlanguage{english}
+\include{content/abstractEN}
 
-	% German abstract
-	\markboth{Kurzfassung}{Kurzfassung}
-	\pagenumbering{roman}
-	\setcounter{page}{1}
-	\include{content/abstract}
+% Acknowledgments
+\markboth{Danksagung}{Danksagung}
+\include{content/acknowledgment}
 
-	% English abstract
-	\markboth{Abstract}{Abstract}
-	\include{content/abstractEN}
+% Table of contents
+\tableofcontents
 
-	% Acknowledgments
-	\markboth{Danksagung}{Danksagung}
-	\include{content/acknowledgment}
+% Nomenclature
+\cleardoublepage
+\markboth{\nomname}{\nomname}
+\input{content/symbols}
+\printnomenclature
 
-	% Table of contents
-	%\begin{spacing}{1.29}  % Adjust for better page layout if needed
-	\tableofcontents
-	%\end{spacing}
+% ==================== MAIN CONTENT ====================
+\mainmatter
+\renewcommand{\arraystretch}{1.4}
+\pagenumbering{arabic}
 
-	% List of abbreviations and symbols
-	\cleardoublepage
-	\markboth{\nomname}{\nomname}
-	\input{content/symbols}
-	\printnomenclature
+% Chapters in correct order
+\include{content/1introduction}
+\include{content/2stateoftheart}
+\include{content/3descriptionproblem}
+\include{content/4modeling}
+\include{content/5simulations}
+\include{content/6appliedexamples}
 
-	% Main content chapters
-	\mainmatter
+% Adjust chapter marks for summary/outlook
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ \  #1}{\thechapter\ \  #1}}
+\include{content/7summary}
+\include{content/8ausblick}
 
-	% Set line spacing within tables to 1.4
-	\renewcommand{\arraystretch}{1.4}
+% ==================== APPENDIX ====================
+\appendix
+\include{content/appendix}
 
-	% Use Arabic page numbering
-	\pagenumbering{arabic}
+% Lists
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
 
-	% Include main chapters
-	\include{content/1introduction}
-	\include{content/2stateoftheart}
-	\include{content/3descriptionproblem}
-	\include{content/4modeling}
-	\include{content/5simulations}
-	\include{content/6appliedexamples}
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
 
-	% Set chapter heading to appear on right side of header
-	\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ \  #1}{\thechapter\ \  #1}}
+\listofalgorithms
 
-	\include{content/7summary}
-	\include{content/8ausblick}
+% Bibliography
+\setlength{\parskip}{0.4\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{content/bibliography}
 
-	% Appendix
-	\appendix
-	\include{content/appendix}
-
-	% List of figures
-	\addcontentsline{toc}{chapter}{List of Figures}
-	\listoffigures
-
-	% List of tables
-	\addcontentsline{toc}{chapter}{List of Tables}
-	\listoftables
-
-	% List of algorithms
-	\listofalgorithms
-
-	% List of equations (commented out)
-	% \listofequations
-
-	% Bibliography
-	\bibliographystyle{plaindin-upgraded}
-	\setlength{\parskip}{0.4\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
-	\addcontentsline{toc}{chapter}{Bibliography}
-	\bibliography{content/bibliography}
-
-	% CV for submission (commented out)
-	%\cleardoublepage
-	%\include{content/lebenslauf}
+% Curriculum Vitae (commented out for anonymized version)
+%\addcontentsline{toc}{chapter}{Lebenslauf}
+%\include{content/lebenslauf}
 
 \end{document}
