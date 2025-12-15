@@ -30,10 +30,24 @@
 \newcommand{\headtitle}{Optimization Methods for Complex Systems}
 \newcommand{\coo}{CO\textsubscript{2}\ }
 
-% Deckblatt (title page) macros
-\newcommand{\birthplace}{[Geburtsort, Land]}
-\newcommand{\faculty}{Fakultät für Bauingenieur-, Geo- und Umweltwissenschaften}
-\newcommand{\institute}{Karlsruher Institut für Technologie (KIT)}
+% Deckblatt (title page) macros - refactored to match KIT Bau example layout
+% NOTE: Replace these placeholder values with your actual information
+\newcommand{\doktorgrad}{DOKTOR-INGENIEURIN}              % or DOKTOR-INGENIEURS
+\newcommand{\facultyname}{Fakultät für Bauingenieur-, Geo- und Umweltwissenschaften}
+\newcommand{\institutname}{Karlsruher Institut für Technologie (KIT)}
+\newcommand{\submissiontype}{genehmigte}                  % or "eingereichte" for submission
+\newcommand{\authorname}{Mareike Kohm M.Sc.}              % Full name with academic suffix
+\newcommand{\birthline}{geb. in Karlsruhe}                % or "aus [Geburtsort, Land]"
+
+% Optional examination details (leave empty to hide from title page)
+\newcommand{\defensedate}{1. Februar 2025}                % Defense date
+\newcommand{\referee}{Prof. Dr.-Ing. Max Mustermann}      % Main referee
+\newcommand{\coreferee}{Prof. Dr.-Ing. Erika Musterfrau}  % Co-referee
+
+% Legacy macros (kept for backwards compatibility with older content files)
+\newcommand{\birthplace}{Karlsruhe}
+\newcommand{\faculty}{\facultyname}
+\newcommand{\institute}{\institutname}
 
 % Load document options and packages (A4)
 \input{dokOptions-a4}
