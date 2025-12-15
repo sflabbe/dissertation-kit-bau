@@ -85,10 +85,14 @@
   references = {Referenzen},
 }
 
-% -------------------- Nomenclature ------------------------------
+% -------------------- Nomenclature and Index ------------------------------
 \usepackage{nomencl}
 \makenomenclature
 \renewcommand{\nomname}{List of Abbreviations and Symbols}
+
+% Index
+\usepackage{makeidx}
+\makeindex
 
 % -------------------- Hyperlinks and References ------------------------------
 \usepackage[
@@ -129,6 +133,7 @@
 % Page settings
 \raggedbottom
 \setlength{\parindent}{0pt}
+\setlength{\topskip}{10.5pt}
 
 % Prevent widows and orphans
 \clubpenalty = 10000
@@ -161,10 +166,11 @@
 \usepackage{enumitem}
 \setlist{nosep}
 
-% -------------------- Captions ------------------------------
+% -------------------- Captions and Float Control ------------------------------
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{ragged2e}
+\usepackage[verbose]{placeins}
 \captionsetup{
   format=plain,
   labelfont=bf,
@@ -206,6 +212,12 @@
 
 % -------------------- Quotes ------------------------------
 \usepackage{csquotes}
+
+% -------------------- CV Package ------------------------------
+\usepackage{currvita}
+
+% -------------------- Improved URL Breaking ------------------------------
+\usepackage{xurl}
 
 % -------------------- Custom Commands ------------------------------
 
@@ -258,9 +270,22 @@
 \renewcommand*{\subsectionformat}{\makebox[1cm][l]{\thesubsection\autodot}}
 \renewcommand*{\subsubsectionformat}{\makebox[1.1cm][l]{\thesubsubsection\autodot}}
 
-% -------------------- TOC Depth ------------------------------
+% -------------------- TOC Depth and Formatting ------------------------------
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
+
+% Table of contents formatting with tocloft
+\usepackage[titles]{tocloft}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
+\renewcommand{\cftchappagefont}{\sffamily\normalsize\bfseries}
+\renewcommand\cftchapfont{\sffamily\normalsize\bfseries}
+\renewcommand\cftsecfont{\sffamily\fontsize{11}{11}}
+\renewcommand\cftsecpagefont{\sffamily\fontsize{11}{11}}
+
+% List indentation
+\renewcommand{\cftfigindent}{0cm}
+\renewcommand{\cfttabindent}{0cm}
 
 
 % -------------------- Hyphenation ------------------------------
@@ -276,6 +301,33 @@
 \usepackage{xspace}
 \usepackage{ifthen}
 \usepackage{calc}
+
+% -------------------- KOMA-Script Compatibility ------------------------------
+\usepackage{scrhack}
+
+% -------------------- Equation List Setup ------------------------------
+% Equation list setup (for list of equations)
+\AtBeginDocument{%
+  \newcaptionname{ngerman}\equationname{Formel}%
+  \newcaptionname{ngerman}\listequationname{Formelverzeichnis}%
+  \newcaptionname{english}\equationname{Equation}%
+  \newcaptionname{english}\listequationname{List of Equations}%
+}
+
+\DeclareNewTOC[
+  tocentryindent=0pt,
+  tocentrynumwidth=2em,
+  type=equation,
+  name={Eq.},
+  types=equations,
+  listname={List of Equations},
+]{equ}
+
+\newcommand{\equationentry}[2][\theequation]{%
+  \addxcontentsline{equ}{equation}[{#1}]{\kern 1em #2}%
+}
+
+\BeforeStartingTOC[equ]{\def\autodot{:}}
 
 % -------------------- TikZ Libraries ------------------------------
 \usetikzlibrary{
