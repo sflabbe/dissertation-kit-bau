@@ -32,6 +32,11 @@
 \newcommand{\headtitle}{Optimization Methods for Complex Systems}
 \newcommand{\coo}{CO\textsubscript{2}\ }
 
+% Deckblatt (title page) macros
+\newcommand{\birthplace}{[Geburtsort, Land]}
+\newcommand{\faculty}{Fakultät für Bauingenieur-, Geo- und Umweltwissenschaften}
+\newcommand{\institute}{Karlsruher Institut für Technologie (KIT)}
+
 % Load modern document options and packages
 \input{dokOptions-modern}
 
@@ -72,6 +77,8 @@
 
 % Nomenclature
 \cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\nomname}
 \markboth{\nomname}{\nomname}
 \input{content/symbols}
 \printnomenclature
@@ -105,12 +112,15 @@
 \addcontentsline{toc}{chapter}{List of Tables}
 \listoftables
 
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Algorithms}
 \listofalgorithms
 
 % Bibliography (biblatex format)
 \setlength{\parskip}{0.4\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
 \addcontentsline{toc}{chapter}{Bibliography}
-\printbibliography[heading=bibintoc,title={Bibliography}]
+\printbibliography[heading=bibliography,title={Bibliography}]
 
 % Curriculum Vitae (commented out for anonymized version)
 %\addcontentsline{toc}{chapter}{Lebenslauf}

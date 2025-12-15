@@ -30,6 +30,11 @@
 \newcommand{\headtitle}{Optimization Methods for Complex Systems}
 \newcommand{\coo}{CO\textsubscript{2}\ }
 
+% Deckblatt (title page) macros
+\newcommand{\birthplace}{[Geburtsort, Land]}
+\newcommand{\faculty}{Fakultät für Bauingenieur-, Geo- und Umweltwissenschaften}
+\newcommand{\institute}{Karlsruher Institut für Technologie (KIT)}
+
 % Load document options and packages
 \input{dokOptions}
 
@@ -70,6 +75,8 @@
 
 % Nomenclature
 \cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\nomname}
 \markboth{\nomname}{\nomname}
 \input{content/symbols}
 \printnomenclature
@@ -103,6 +110,9 @@
 \addcontentsline{toc}{chapter}{List of Tables}
 \listoftables
 
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Algorithms}
 \listofalgorithms
 
 % Bibliography

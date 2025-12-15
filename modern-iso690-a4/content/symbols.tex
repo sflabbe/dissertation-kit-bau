@@ -1,105 +1,118 @@
-% List of Abbreviations and Symbols
+% ------------------------------------------------------------------
+% content/symbols.tex
+% Mock nomenclature / symbols (template example)
+% Add \sym or \nomenclature entries throughout the thesis as needed.
+%
+% Build step (nomencl):
+%   makeindex -s nomencl.ist -o dissertation-modern-a4.nls dissertation-modern-a4.nlo
+% Or use the appropriate filename for your main document.
+% ------------------------------------------------------------------
 
-% Abbreviations
-\nomenclature{FEM}{Finite Element Method}
-\nomenclature{DOF}{Degree of Freedom}
-\nomenclature{PDE}{Partial Differential Equation}
-\nomenclature{ODE}{Ordinary Differential Equation}
-\nomenclature{CFD}{Computational Fluid Dynamics}
-\nomenclature{FEA}{Finite Element Analysis}
-\nomenclature{BEM}{Boundary Element Method}
-\nomenclature{HHT}{Hilber-Hughes-Taylor (time integration method)}
-\nomenclature{RMS}{Root Mean Square}
-\nomenclature{FFT}{Fast Fourier Transform}
-\nomenclature{FRF}{Frequency Response Function}
-\nomenclature{MAC}{Modal Assurance Criterion}
+% --- Abbreviations ---
+\sym{FE}{Finite Element}
+\sym{FEA}{Finite Element Analysis}
+\sym{FEM}{Finite Element Method}
+\sym{DOF}{Degree of Freedom}
+\sym{PDE}{Partial Differential Equation}
+\sym{ODE}{Ordinary Differential Equation}
+\sym{BEM}{Boundary Element Method}
+\sym{CFD}{Computational Fluid Dynamics}
+\sym{HHT-$\alpha$}{Hilber--Hughes--Taylor time integration scheme \nomunit{--}}
+\sym{RMS}{Root Mean Square}
+\sym{FFT}{Fast Fourier Transform}
+\sym{FRF}{Frequency Response Function}
+\sym{MAC}{Modal Assurance Criterion}
 
-% Latin symbols (uppercase)
-\nomenclature{$A$}{Area [m$^2$]}
-\nomenclature{$C$}{Damping matrix [Ns/m]}
-\nomenclature{$E$}{Elastic modulus [Pa]}
-\nomenclature{$F$}{Force [N]}
-\nomenclature{$I$}{Second moment of area [m$^4$]}
-\nomenclature{$K$}{Stiffness matrix [N/m]}
-\nomenclature{$L$}{Length [m]}
-\nomenclature{$M$}{Mass matrix [kg]}
-\nomenclature{$N$}{Number of elements [-]}
-\nomenclature{$P$}{Power [W]}
-\nomenclature{$Q$}{Generalized force [N or Nm]}
-\nomenclature{$R$}{Resistance [Ns/m]}
-\nomenclature{$T$}{Period [s]}
-\nomenclature{$U$}{Potential energy [J]}
-\nomenclature{$V$}{Volume [m$^3$]}
-\nomenclature{$W$}{Work [J]}
+% --- Latin symbols (uppercase) ---
+\sym{$A$}{Area \nomunit{\si{\meter\squared}}}
+\sym{$C$}{Damping matrix \nomunit{\si{\newton\second\per\meter}}}
+\sym{$E$}{Elastic modulus \nomunit{\si{\pascal}}}
+\sym{$F$}{Force \nomunit{\si{\newton}}}
+\sym{$I$}{Second moment of area \nomunit{\si{\meter\tothe{4}}}}
+\sym{$K$}{Stiffness matrix \nomunit{\si{\newton\per\meter}}}
+\sym{$L$}{Length \nomunit{\si{\meter}}}
+\sym{$M$}{Mass matrix \nomunit{\si{\kilogram}}}
+\sym{$N$}{Number of elements \nomunit{--}}
+\sym{$P$}{Power \nomunit{\si{\watt}}}
+\sym{$Q$}{Generalized force \nomunit{\si{\newton} or \si{\newton\meter}}}
+\sym{$R$}{Resistance \nomunit{\si{\newton\second\per\meter}}}
+\sym{$T$}{Period \nomunit{\si{\second}}}
+\sym{$U$}{Potential energy \nomunit{\si{\joule}}}
+\sym{$V$}{Volume \nomunit{\si{\meter\cubed}}}
+\sym{$W$}{Work \nomunit{\si{\joule}}}
 
-% Latin symbols (lowercase)
-\nomenclature{$a$}{Acceleration [m/s$^2$]}
-\nomenclature{$c$}{Damping coefficient [Ns/m]}
-\nomenclature{$d$}{Diameter [m]}
-\nomenclature{$e$}{Error [-]}
-\nomenclature{$f$}{Frequency [Hz]}
-\nomenclature{$g$}{Gravitational acceleration [m/s$^2$]}
-\nomenclature{$h$}{Height, time step [m, s]}
-\nomenclature{$i$}{Index, iteration counter [-]}
-\nomenclature{$k$}{Stiffness [N/m]}
-\nomenclature{$m$}{Mass [kg]}
-\nomenclature{$n$}{Number [-]}
-\nomenclature{$p$}{Pressure [Pa]}
-\nomenclature{$q$}{Generalized coordinate [m or rad]}
-\nomenclature{$r$}{Radius [m]}
-\nomenclature{$s$}{Arc length [m]}
-\nomenclature{$t$}{Time [s]}
-\nomenclature{$u$}{Displacement (x-direction) [m]}
-\nomenclature{$v$}{Velocity [m/s]}
-\nomenclature{$w$}{Displacement (z-direction) [m]}
-\nomenclature{$x$}{Position (x-direction) [m]}
-\nomenclature{$y$}{Position (y-direction) [m]}
-\nomenclature{$z$}{Position (z-direction) [m]}
+% --- Latin symbols (lowercase) ---
+\sym{$a$}{Acceleration \nomunit{\si{\meter\per\second\squared}}}
+\sym{$c$}{Damping coefficient \nomunit{\si{\newton\second\per\meter}}}
+\sym{$d$}{Diameter \nomunit{\si{\meter}}}
+\sym{$e$}{Error \nomunit{--}}
+\sym{$f$}{Frequency \nomunit{\si{\hertz}}}
+\sym{$g$}{Gravitational acceleration \nomunit{\si{\meter\per\second\squared}}}
+\sym{$h$}{Height, time step \nomunit{\si{\meter}, \si{\second}}}
+\sym{$i$}{Index, iteration counter \nomunit{--}}
+\sym{$k$}{Stiffness \nomunit{\si{\newton\per\meter}}}
+\sym{$m$}{Mass \nomunit{\si{\kilogram}}}
+\sym{$n$}{Number \nomunit{--}}
+\sym{$p$}{Pressure \nomunit{\si{\pascal}}}
+\sym{$q$}{Generalized coordinate \nomunit{\si{\meter} or \si{\radian}}}
+\sym{$r$}{Radius \nomunit{\si{\meter}}}
+\sym{$s$}{Arc length \nomunit{\si{\meter}}}
+\sym{$t$}{Time \nomunit{\si{\second}}}
+\sym{$u$}{Displacement (x-direction) \nomunit{\si{\meter}}}
+\sym{$u(t)$}{Displacement as function of time \nomunit{\si{\meter}}}
+\sym{$v$}{Velocity \nomunit{\si{\meter\per\second}}}
+\sym{$\dot{u}(t)$}{Velocity \nomunit{\si{\meter\per\second}}}
+\sym{$\ddot{u}(t)$}{Acceleration \nomunit{\si{\meter\per\second\squared}}}
+\sym{$w$}{Displacement (z-direction) \nomunit{\si{\meter}}}
+\sym{$x$}{Position (x-direction) \nomunit{\si{\meter}}}
+\sym{$y$}{Position (y-direction) \nomunit{\si{\meter}}}
+\sym{$z$}{Position (z-direction) \nomunit{\si{\meter}}}
 
-% Greek symbols (lowercase)
-\nomenclature{$\alpha$}{Parameter, damping ratio [-]}
-\nomenclature{$\beta$}{Coefficient, Newmark parameter [-]}
-\nomenclature{$\gamma$}{Shear strain, Newmark parameter [-]}
-\nomenclature{$\delta$}{Displacement, variation [m]}
-\nomenclature{$\epsilon$}{Strain, tolerance [-]}
-\nomenclature{$\zeta$}{Damping ratio [-]}
-\nomenclature{$\eta$}{Efficiency, loss factor [-]}
-\nomenclature{$\theta$}{Angle, rotation [rad]}
-\nomenclature{$\kappa$}{Curvature [m$^{-1}$]}
-\nomenclature{$\lambda$}{Eigenvalue, wavelength [-, m]}
-\nomenclature{$\mu$}{Coefficient of friction, dynamic viscosity [-, Pa·s]}
-\nomenclature{$\nu$}{Poisson's ratio [-]}
-\nomenclature{$\xi$}{Coordinate, damping ratio [-]}
-\nomenclature{$\rho$}{Density [kg/m$^3$]}
-\nomenclature{$\sigma$}{Stress, standard deviation [Pa, -]}
-\nomenclature{$\tau$}{Shear stress, time constant [Pa, s]}
-\nomenclature{$\phi$}{Phase angle, mode shape [rad, -]}
-\nomenclature{$\chi$}{Parameter [-]}
-\nomenclature{$\psi$}{Function, angle [-, rad]}
-\nomenclature{$\omega$}{Angular frequency [rad/s]}
+% --- Greek symbols (lowercase) ---
+\sym{$\alpha$}{Numerical damping parameter (HHT-$\alpha$) \nomunit{--}}
+\sym{$\beta$}{Coefficient, Newmark parameter \nomunit{--}}
+\sym{$\gamma$}{Shear strain, Newmark parameter \nomunit{--}}
+\sym{$\delta$}{Displacement, variation \nomunit{\si{\meter}}}
+\sym{$\epsilon$}{Strain, tolerance \nomunit{--}}
+\sym{$\zeta$}{Damping ratio \nomunit{--}}
+\sym{$\eta$}{Efficiency, loss factor \nomunit{--}}
+\sym{$\theta$}{Angle, rotation \nomunit{\si{\radian}}}
+\sym{$\kappa$}{Curvature \nomunit{\si{\per\meter}}}
+\sym{$\lambda$}{Eigenvalue, wavelength \nomunit{--, \si{\meter}}}
+\sym{$\mu$}{Coefficient of friction, dynamic viscosity \nomunit{--, \si{\pascal\second}}}
+\sym{$\nu$}{Poisson's ratio \nomunit{--}}
+\sym{$\xi$}{Coordinate, damping ratio \nomunit{--}}
+\sym{$\rho$}{Density \nomunit{\si{\kilogram\per\meter\cubed}}}
+\sym{$\sigma$}{Stress, standard deviation \nomunit{\si{\pascal}, --}}
+\sym{$\tau$}{Shear stress, time constant \nomunit{\si{\pascal}, \si{\second}}}
+\sym{$\phi$}{Phase angle, mode shape \nomunit{\si{\radian}, --}}
+\sym{$\chi$}{Parameter \nomunit{--}}
+\sym{$\psi$}{Function, angle \nomunit{--, \si{\radian}}}
+\sym{$\omega$}{Angular frequency \nomunit{\si{\radian\per\second}}}
+\sym{$\omega_n$}{Natural circular frequency \nomunit{\si{\radian\per\second}}}
 
-% Greek symbols (uppercase)
-\nomenclature{$\Delta$}{Difference, increment [-]}
-\nomenclature{$\Phi$}{Mode shape matrix [-]}
-\nomenclature{$\Omega$}{Rotational speed [rad/s]}
+% --- Greek symbols (uppercase) ---
+\sym{$\Delta$}{Difference, increment \nomunit{--}}
+\sym{$\Phi$}{Mode shape matrix \nomunit{--}}
+\sym{$\Omega$}{Rotational speed \nomunit{\si{\radian\per\second}}}
 
-% Mathematical operators
-\nomenclature{$\nabla$}{Gradient operator [m$^{-1}$]}
-\nomenclature{$\partial$}{Partial derivative [-]}
-\nomenclature{$\dot{(\cdot)}$}{First time derivative}
-\nomenclature{$\ddot{(\cdot)}$}{Second time derivative}
-\nomenclature{$\bar{(\cdot)}$}{Mean value}
-\nomenclature{$\hat{(\cdot)}$}{Estimated value}
-\nomenclature{$\tilde{(\cdot)}$}{Normalized value}
+% --- Mathematical operators ---
+\sym{$\nabla$}{Gradient operator \nomunit{\si{\per\meter}}}
+\sym{$\partial$}{Partial derivative \nomunit{--}}
+\sym{$\dot{(\cdot)}$}{First time derivative}
+\sym{$\ddot{(\cdot)}$}{Second time derivative}
+\sym{$\bar{(\cdot)}$}{Mean value}
+\sym{$\hat{(\cdot)}$}{Estimated value}
+\sym{$\tilde{(\cdot)}$}{Normalized value}
 
-% Subscripts and superscripts
-\nomenclature{$(\cdot)_0$}{Initial value}
-\nomenclature{$(\cdot)_{\text{max}}$}{Maximum value}
-\nomenclature{$(\cdot)_{\text{min}}$}{Minimum value}
-\nomenclature{$(\cdot)_{\text{opt}}$}{Optimal value}
-\nomenclature{$(\cdot)_{\text{crit}}$}{Critical value}
-\nomenclature{$(\cdot)_{\text{eff}}$}{Effective value}
-\nomenclature{$(\cdot)_n$}{Natural (undamped)}
-\nomenclature{$(\cdot)_d$}{Damped}
-\nomenclature{$(\cdot)^T$}{Transpose}
-\nomenclature{$(\cdot)^{-1}$}{Inverse}
+% --- Subscripts and superscripts ---
+\sym{$(\cdot)_0$}{Initial value}
+\sym{$(\cdot)_{\text{max}}$}{Maximum value}
+\sym{$(\cdot)_{\text{min}}$}{Minimum value}
+\sym{$(\cdot)_{\text{opt}}$}{Optimal value}
+\sym{$(\cdot)_{\text{crit}}$}{Critical value}
+\sym{$(\cdot)_{\text{eff}}$}{Effective value}
+\sym{$(\cdot)_n$}{Natural (undamped)}
+\sym{$(\cdot)_d$}{Damped}
+\sym{$(\cdot)^T$}{Transpose}
+\sym{$(\cdot)^{-1}$}{Inverse}

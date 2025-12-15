@@ -1,44 +1,52 @@
 % -----------------------------------------------------------------------------
-% Deckblatt / Title page (KIT Bau - anonymized template)
-% Use with: \headtitle (title) and \autor (author) defined in the main file.
+% Deckblatt / Title page (KIT Bau - anonymized template) - A5 VERSION
+% Use with: \headtitle (title), \autor (author), \birthplace, \faculty,
+%          and \institute defined in the main file.
+% Robust layout using titlepage environment with flexible vertical spacing
 % -----------------------------------------------------------------------------
 
+\begin{titlepage}
 \thispagestyle{empty}
-\begin{center}
-\mbox{}%
-\vspace*{20pt}\\
-\Large\textbf{\headtitle}\\
-\normalsize
-\vspace*{24pt}\\
-	Zur Erlangung des akademischen Grades eines\\
-	\vspace*{20pt}
-	DOKTOR-INGENIEURS\\
-	\vspace*{20pt}
-	bei der Fakult\"at f\"ur\\
-	Bauingenieur-, Geo- und Umweltwissenschaften\\
-	des Karlsruher Instituts f\"ur Technologie (KIT)\\
-	\vspace*{20pt}
-	% bei vorgelegter Version soll nicht auskommentiert werden
-	eingereichte\\
-	\vspace*{20pt}
-	% bei gedruckter Version soll nicht auskommentiert werden
-	% genehmigte\\
-	DISSERTATION\\
-	\vspace*{20pt}
-	von\\
-	\vspace*{20pt}
-	Dipl.-Ing. \autor\\
-	aus [Geburtsort, Land]
-\end{center}
+\centering
+
+\vspace*{1.5cm}
+{\Large\bfseries \headtitle\par}
+
+\vspace{1cm}
+{Zur Erlangung des akademischen Grades eines\par}
+\vspace{0.5cm}
+{\Large\bfseries DOKTOR-INGENIEURS\par}
 
 \vfill
 
-\begin{center}
-	\begin{tabular}{ll}
-	% Tag der m\"undlichen Pr\"ufung: & [TT. Monat JJJJ]\\
-	% Referent:    & Prof. Dr.-Ing. [Erstgutachter]\\
-	% Korreferent: & Prof. Dr.-Ing. [Zweitgutachter]\\
-	\end{tabular}
-\end{center}
+{bei der \faculty\par}
+{des \institute\par}
 
-\clearpage
+\vfill
+
+% Switch between "eingereichte" (submitted) and "genehmigte" (approved)
+{eingereichte\par}
+% {genehmigte\par}
+\vspace{0.5cm}
+{\Large\bfseries DISSERTATION\par}
+
+\vfill
+
+{von\par}
+\vspace{0.25cm}
+{\Large\bfseries Dipl.-Ing. \autor\par}
+\vspace{0.25cm}
+{aus \birthplace\par}
+
+\vfill
+
+% Optional examination details (commented out for submission)
+\begin{tabular}{@{}ll@{}}
+% Tag der m\"undlichen Pr\"ufung: & [TT. Monat JJJJ]\\
+% Referent:    & Prof. Dr.-Ing. [Erstgutachter]\\
+% Korreferent: & Prof. Dr.-Ing. [Zweitgutachter]\\
+\end{tabular}
+
+\vspace{0.75cm}
+
+\end{titlepage}
