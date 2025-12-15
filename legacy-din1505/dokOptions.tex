@@ -192,8 +192,13 @@
 % ==================== SI UNITS ====================
 \usepackage{siunitx}
 \sisetup{
-  round-mode          = places,
-  round-precision     = 2,
+  locale=UK,
+  per-mode=symbol,
+  group-separator={,},
+  group-minimum-digits=4,
+  output-decimal-marker={.},
+  round-mode=places,
+  round-precision=2
 }
 
 % ==================== ADVANCED MATH ====================
