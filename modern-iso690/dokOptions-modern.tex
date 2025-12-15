@@ -15,17 +15,11 @@
 \usepackage{fontspec}
 \usepackage{unicode-math}
 
-% Set main fonts (customize as needed)
-\setmainfont{Latin Modern Roman}
-\setsansfont{Latin Modern Sans}
-\setmonofont{Latin Modern Mono}
-\setmathfont{Latin Modern Math}
-
-% Alternative: Use modern fonts like:
-% \setmainfont{TeX Gyre Termes}  % Times-like
-% \setsansfont{TeX Gyre Heros}   % Helvetica-like
-% \setmonofont{TeX Gyre Cursor}  % Courier-like
-% \setmathfont{TeX Gyre Termes Math}
+% Set main fonts to match original (Adobe Times / Helvetica equivalents)
+\setmainfont{TeX Gyre Termes}    % Times-like (equivalent to mathptmx)
+\setsansfont{TeX Gyre Heros}     % Helvetica-like (equivalent to phv)
+\setmonofont{TeX Gyre Cursor}    % Courier-like (equivalent to pcr)
+\setmathfont{TeX Gyre Termes Math}
 
 \usepackage{microtype}
 
@@ -47,6 +41,7 @@
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{longtable}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
 
 % -------------------- Algorithms ------------------------------
 \usepackage{algorithm}
@@ -116,28 +111,51 @@
 ]{hyperref}
 
 % -------------------- Page Layout ------------------------------
+% Match original document's geometry settings
 \usepackage{geometry}
 \geometry{
   a5paper,
-  top=20mm,
-  bottom=20mm,
-  left=15mm,
-  right=15mm,
-  headheight=12pt,
-  footskip=12pt
+  headheight=1.5\baselineskip,
+  top=25mm,
+  lines=31,
+  heightrounded=true,
+  bindingoffset=15mm,
+  textwidth=106mm
 }
 
+% Alternative A4 paper setup (commented out)
+%\geometry{a4paper,headheight=1.5\baselineskip,top=25mm,lines=46,heightrounded=true,bindingoffset=15mm,textwidth=160mm}
+
+% Page settings
+\raggedbottom
+\setlength{\parindent}{0pt}
+
+% Prevent widows and orphans
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+% Float placement parameters to match original
+\renewcommand{\floatpagefraction}{0.7}
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+
+% Emergency stretch for better line breaking
+\setlength{\emergencystretch}{4pt}
+
 % -------------------- Headers and Footers ------------------------------
-\usepackage[automark,headsepline]{scrlayer-scrpage}
-\pagestyle{scrheadings}
-\clearscrheadfoot
-\ihead{\headmark}
-\ohead{\pagemark}
+\usepackage[markcase=ignoreuppercase,headsepline,footsepline]{scrlayer-scrpage}
 \automark[section]{chapter}
+\setlength{\headsep}{5mm}
+\setlength{\footskip}{10mm}
+\KOMAoptions{headsepline=0.5pt}
+
+% Footnote formatting
+\deffootnote[0.6em]{0.6em}{0em}{\textsuperscript{\thefootnotemark\ }}
 
 % -------------------- Spacing ------------------------------
-\usepackage{setspace}
-\setstretch{1.2}
+\usepackage[onehalfspacing]{setspace}
 
 % -------------------- Lists ------------------------------
 \usepackage{enumitem}
@@ -146,13 +164,17 @@
 % -------------------- Captions ------------------------------
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{ragged2e}
 \captionsetup{
   format=plain,
   labelfont=bf,
-  textfont=it,
-  justification=centering,
-  font=small
+  justification=RaggedRight,
+  font=footnotesize
 }
+
+% German caption names
+\addto\captionsgerman{\renewcommand{\figurename}{Bild}}
+\addto\captionsgerman{\renewcommand{\tablename}{Tabelle}}
 
 % -------------------- Units and Numbers ------------------------------
 \usepackage{siunitx}
@@ -218,20 +240,28 @@
 \newtheorem{note}[theorem]{Note}
 
 % -------------------- Chapter and Section Formatting ------------------------------
-\setkomafont{chapter}{\normalfont\LARGE\bfseries}
-\setkomafont{section}{\normalfont\Large\bfseries}
-\setkomafont{subsection}{\normalfont\large\bfseries}
-\setkomafont{subsubsection}{\normalfont\normalsize\bfseries}
+% Match original font sizes and families (Helvetica/TeX Gyre Heros for headings)
+\addtokomafont{chapter}{\sffamily\fontsize{17}{17}\bfseries}
+\addtokomafont{section}{\sffamily\fontsize{13}{13}\bfseries}
+\addtokomafont{subsection}{\sffamily\fontsize{11}{11}\bfseries}
+\addtokomafont{subsubsection}{\sffamily\fontsize{9}{9}\bfseries}
+
+% Caption and page header/footer fonts
+\addtokomafont{caption}{\footnotesize}
+\setkomafont{captionlabel}{\footnotesize}
+\setkomafont{pageheadfoot}{\footnotesize}
+\setkomafont{pagenumber}{\normalsize}
+
+% Heading formatting with number boxes
+\renewcommand*{\chapterformat}{\makebox[1cm][l]{\thechapter\autodot}}
+\renewcommand*{\sectionformat}{\makebox[1cm][l]{\thesection\autodot}}
+\renewcommand*{\subsectionformat}{\makebox[1cm][l]{\thesubsection\autodot}}
+\renewcommand*{\subsubsectionformat}{\makebox[1.1cm][l]{\thesubsubsection\autodot}}
 
 % -------------------- TOC Depth ------------------------------
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
 
-% -------------------- Float Placement ------------------------------
-\renewcommand{\topfraction}{0.9}
-\renewcommand{\bottomfraction}{0.9}
-\renewcommand{\textfraction}{0.1}
-\renewcommand{\floatpagefraction}{0.85}
 
 % -------------------- Hyphenation ------------------------------
 \hyphenation{
