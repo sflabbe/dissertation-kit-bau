@@ -1,0 +1,330 @@
+% Appendix
+
+\chapter{Appendix}
+\label{ch:appendix}
+
+\section{Mathematical Derivations}
+\label{sec:math_derivations}
+
+\subsection{Derivation of Beam on Elastic Foundation Solution}
+\label{subsec:beam_foundation_derivation}
+
+Starting from the Euler-Bernoulli beam equation with elastic foundation:
+
+\begin{equation}
+	EI \frac{\partial^4 w}{\partial x^4} + k_f w = F(x,t)
+	\label{eq:beam_eq_app}
+\end{equation}
+
+For a moving harmonic load $F(x,t) = F_0 \delta(x - vt)$, using the transformation $\xi = x - vt$:
+
+\begin{equation}
+	EI \frac{d^4 w}{d\xi^4} + k_f w = F_0 \delta(\xi)
+	\label{eq:transformed}
+\end{equation}
+
+The characteristic equation is:
+\begin{equation}
+	EI\lambda^4 + k_f = 0
+	\label{eq:characteristic}
+\end{equation}
+
+with roots:
+\begin{equation}
+	\lambda_{1,2,3,4} = \pm\beta(1 \pm i), \quad \beta = \sqrt[4]{\frac{k_f}{4EI}}
+	\label{eq:roots}
+\end{equation}
+
+The general solution for $\xi > 0$ is:
+\begin{equation}
+	w(\xi) = e^{-\beta\xi}(C_1\cos\beta\xi + C_2\sin\beta\xi)
+	\label{eq:general_solution}
+\end{equation}
+
+Applying boundary conditions and continuity requirements yields the deflection and bending moment distributions.
+
+\subsection{Hertzian Contact Stiffness Derivation}
+\label{subsec:hertz_derivation}
+
+For two elastic bodies in contact with radii $R_1$ and $R_2$, the equivalent radius is:
+
+\begin{equation}
+	\frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}
+	\label{eq:equiv_radius}
+\end{equation}
+
+The Hertzian theory gives the relationship between normal force $F_N$ and approach $\delta$:
+
+\begin{equation}
+	\delta = \left(\frac{9F_N^2}{16E^{*2}R}\right)^{1/3}
+	\label{eq:hertz_approach}
+\end{equation}
+
+Inverting this relationship:
+
+\begin{equation}
+	F_N = \frac{4}{3}E^*\sqrt{R}\delta^{3/2} = C_H\delta^{3/2}
+	\label{eq:hertz_force_app}
+\end{equation}
+
+The linearized contact stiffness at a given load $F_0$ is:
+
+\begin{equation}
+	k_c = \frac{dF_N}{d\delta}\bigg|_{\delta_0} = \frac{3}{2}C_H\delta_0^{1/2} = \frac{3}{2}\frac{F_0}{\delta_0}
+	\label{eq:linearized_stiffness}
+\end{equation}
+
+\section{Model Parameters}
+\label{sec:model_parameters}
+
+\subsection{Standard Vehicle Parameters}
+\label{subsec:vehicle_parameters}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Standard vehicle parameters used in simulations}
+	\label{tab:vehicle_params_app}
+	\begin{tabular}{llcc}
+		\toprule
+		Parameter & Symbol & Passenger & Freight \\
+		\midrule
+		Car body mass & $m_c$ [kg] & 30,000 & 40,000 \\
+		Bogie mass & $m_b$ [kg] & 3,000 & 4,500 \\
+		Wheelset mass & $m_w$ [kg] & 1,500 & 2,200 \\
+		Secondary stiffness & $k_s$ [N/m] & $3 \times 10^5$ & $5 \times 10^5$ \\
+		Primary stiffness & $k_p$ [N/m] & $1 \times 10^6$ & $8 \times 10^5$ \\
+		Secondary damping & $c_s$ [Ns/m] & 30,000 & 40,000 \\
+		Primary damping & $c_p$ [Ns/m] & 20,000 & 30,000 \\
+		Wheelset radius & $R_w$ [m] & 0.46 & 0.50 \\
+		Axle load & $F_0$ [kN] & 100 & 225 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{Standard Track Parameters}
+\label{subsec:track_parameters}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Standard track parameters used in simulations}
+	\label{tab:track_params_app}
+	\begin{tabular}{llc}
+		\toprule
+		Parameter & Symbol & Value \\
+		\midrule
+		Rail profile & & UIC 60 \\
+		Rail mass per length & $\mu$ [kg/m] & 60 \\
+		Rail bending stiffness & $EI$ [MNm$^2$] & 6.45 \\
+		Sleeper spacing & $l_s$ [m] & 0.60 \\
+		Sleeper mass & $m_s$ [kg] & 280 \\
+		Rail pad stiffness & $k_{\text{pad}}$ [kN/mm] & 600 \\
+		Rail pad damping & $c_{\text{pad}}$ [kNs/m] & 60 \\
+		Ballast stiffness & $k_{\text{ballast}}$ [kN/mm] & 120 \\
+		Ballast damping & $c_{\text{ballast}}$ [kNs/m] & 80 \\
+		Subgrade stiffness & $k_{\text{sub}}$ [kN/mm] & 200 \\
+		Subgrade damping & $c_{\text{sub}}$ [kNs/m] & 40 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Numerical Methods}
+\label{sec:numerical_methods}
+
+\subsection{Newmark Integration Scheme}
+\label{subsec:newmark_scheme}
+
+The Newmark-$\beta$ method uses the following update equations:
+
+\paragraph{Displacement predictor:}
+\begin{equation}
+	\tilde{\mathbf{z}}_{n+1} = \mathbf{z}_n + \Delta t \dot{\mathbf{z}}_n + \frac{\Delta t^2}{2}(1-2\beta)\ddot{\mathbf{z}}_n
+	\label{eq:disp_predictor}
+\end{equation}
+
+\paragraph{Velocity predictor:}
+\begin{equation}
+	\tilde{\dot{\mathbf{z}}}_{n+1} = \dot{\mathbf{z}}_n + \Delta t(1-\gamma)\ddot{\mathbf{z}}_n
+	\label{eq:vel_predictor}
+\end{equation}
+
+\paragraph{Effective stiffness matrix:}
+\begin{equation}
+	\mathbf{K}_{\text{eff}} = \mathbf{K} + \frac{\gamma}{\beta\Delta t}\mathbf{C} + \frac{1}{\beta\Delta t^2}\mathbf{M}
+	\label{eq:eff_stiffness}
+\end{equation}
+
+\paragraph{Effective force vector:}
+\begin{equation}
+	\mathbf{F}_{\text{eff}} = \mathbf{F}_{n+1} + \mathbf{M}\left(\frac{1}{\beta\Delta t^2}\tilde{\mathbf{z}}_{n+1}\right) + \mathbf{C}\left(\frac{\gamma}{\beta\Delta t}\tilde{\mathbf{z}}_{n+1} - \tilde{\dot{\mathbf{z}}}_{n+1}\right)
+	\label{eq:eff_force}
+\end{equation}
+
+\paragraph{Acceleration corrector:}
+\begin{equation}
+	\ddot{\mathbf{z}}_{n+1} = \mathbf{K}_{\text{eff}}^{-1}\mathbf{F}_{\text{eff}}
+	\label{eq:acc_corrector}
+\end{equation}
+
+\paragraph{Final updates:}
+\begin{align}
+	\mathbf{z}_{n+1} &= \tilde{\mathbf{z}}_{n+1} + \beta\Delta t^2\ddot{\mathbf{z}}_{n+1} \\
+	\dot{\mathbf{z}}_{n+1} &= \tilde{\dot{\mathbf{z}}}_{n+1} + \gamma\Delta t\ddot{\mathbf{z}}_{n+1}
+	\label{eq:final_updates}
+\end{align}
+
+\subsection{Time Step Selection}
+\label{subsec:timestep}
+
+The time step is selected based on the stability criterion and accuracy requirements:
+
+\begin{equation}
+	\Delta t \leq \frac{T_{\min}}{n_{\text{steps}}}
+	\label{eq:timestep_criterion}
+\end{equation}
+
+where $T_{\min}$ is the shortest period of interest and $n_{\text{steps}}$ is the number of steps per period (typically 20--50).
+
+For the contact problem, the highest relevant frequency is typically the wheelset bouncing frequency:
+
+\begin{equation}
+	f_w = \frac{1}{2\pi}\sqrt{\frac{k_c + k_p}{m_w}}
+	\label{eq:wheelset_freq}
+\end{equation}
+
+A time step of $\Delta t = 0.0001$~s is typically sufficient for speeds up to 300~km/h.
+
+\section{Track Irregularity Spectra}
+\label{sec:irregularity_spectra}
+
+\subsection{Standard PSD Functions}
+\label{subsec:psd_functions}
+
+The track irregularity PSD according to ORE/ERRI specification:
+
+\begin{equation}
+	S_v(\Omega) = \frac{A_v \Omega_c^2}{(\Omega^2 + \Omega_r^2)(\Omega^2 + \Omega_c^2)}
+	\label{eq:ore_psd}
+\end{equation}
+
+with parameters:
+\begin{itemize}
+	\item $\Omega_r = 0.8246$ rad/m (wavelength 7.62~m)
+	\item $\Omega_c = 0.0206$ rad/m (wavelength 305~m)
+\end{itemize}
+
+Quality levels:
+
+\begin{table}[htbp]
+	\centering
+	\caption{Track quality levels (ORE specification)}
+	\label{tab:quality_levels}
+	\begin{tabular}{lcc}
+		\toprule
+		Quality level & $A_v$ [rad$^2$/m] & Description \\
+		\midrule
+		Very good & $0.25 \times 10^{-6}$ & New high-speed track \\
+		Good & $1.0 \times 10^{-6}$ & Well-maintained conventional track \\
+		Average & $4.0 \times 10^{-6}$ & Normal conventional track \\
+		Poor & $16.0 \times 10^{-6}$ & Degraded track requiring maintenance \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Measurement Data Processing}
+\label{sec:data_processing}
+
+\subsection{Signal Filtering}
+\label{subsec:filtering}
+
+Measured force signals are filtered using a Butterworth band-pass filter:
+
+\begin{itemize}
+	\item Lower cutoff frequency: 1~Hz (remove quasi-static component)
+	\item Upper cutoff frequency: 500~Hz (remove high-frequency noise)
+	\item Filter order: 4 (roll-off 80~dB/decade)
+\end{itemize}
+
+\subsection{Statistical Metrics}
+\label{subsec:statistics}
+
+The following statistical metrics are used for comparison:
+
+\paragraph{Mean value:}
+\begin{equation}
+	\bar{F} = \frac{1}{N}\sum_{i=1}^{N}F_i
+	\label{eq:mean}
+\end{equation}
+
+\paragraph{RMS value:}
+\begin{equation}
+	F_{\text{RMS}} = \sqrt{\frac{1}{N}\sum_{i=1}^{N}(F_i - \bar{F})^2}
+	\label{eq:rms}
+\end{equation}
+
+\paragraph{Peak factor:}
+\begin{equation}
+	\text{PF} = \frac{F_{\max}}{F_{\text{RMS}}}
+	\label{eq:peak_factor}
+\end{equation}
+
+\paragraph{Percentile values:}
+$P_{95}$ denotes the value exceeded by only 5\% of the samples.
+
+\section{Software Implementation}
+\label{sec:software}
+
+\subsection{Programming Language}
+\label{subsec:programming}
+
+The model is implemented in MATLAB/Octave for ease of development and visualization. Critical computational kernels are implemented in C++ for performance.
+
+\subsection{Code Structure}
+\label{subsec:code_structure}
+
+Main components:
+\begin{itemize}
+	\item \texttt{VehicleModel.m}: Vehicle dynamics model
+	\item \texttt{TrackModel.m}: Track structure model
+	\item \texttt{ContactModel.m}: Wheel-rail contact calculations
+	\item \texttt{IrregularityGenerator.m}: Track irregularity generation
+	\item \texttt{Integrator.m}: Time integration routines
+	\item \texttt{PostProcessor.m}: Results analysis and visualization
+\end{itemize}
+
+\subsection{Computational Performance}
+\label{subsec:performance}
+
+Typical performance on standard hardware (Intel i7, 16GB RAM):
+
+\begin{table}[htbp]
+	\centering
+	\caption{Computational performance}
+	\label{tab:performance}
+	\begin{tabular}{lcc}
+		\toprule
+		Simulation case & Track length & Computation time \\
+		\midrule
+		Simple vehicle, smooth track & 100~m & 15~s \\
+		Full vehicle, irregular track & 100~m & 45~s \\
+		Full vehicle, irregular track & 1000~m & 6~min \\
+		Parameter study (100 cases) & 100~m each & 75~min \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Additional Figures}
+\label{sec:additional_figures}
+
+This section would contain additional figures and plots that support the main text but are too detailed for inclusion in the main chapters.
+
+% Placeholder figures would go here in a real dissertation
+
+\section{List of Publications}
+\label{sec:publications}
+
+Publications resulting from this dissertation work:
+
+\begin{enumerate}
+	\item Author Name (Year). "Article Title." \textit{Journal Name}, Vol. X, No. Y, pp. ZZ--ZZ.
+	\item Author Name, Co-Author (Year). "Conference Paper Title." \textit{Proceedings of Conference Name}, Location, pp. ZZ--ZZ.
+\end{enumerate}

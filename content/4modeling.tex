@@ -1,0 +1,240 @@
+% Chapter 4: Modeling Approach
+
+\chapter{Modeling Approach}
+\label{ch:modeling}
+
+\section{Introduction}
+\label{sec:modeling_intro}
+
+This chapter presents the development of the discrete model for predicting impact loads from railway traffic. The model combines multi-body dynamics for the vehicle with a discrete track representation, connected through nonlinear contact mechanics.
+
+\section{Model Architecture}
+\label{sec:architecture}
+
+The overall model consists of three main components:
+
+\begin{enumerate}
+	\item \textbf{Vehicle model:} Multi-body representation with lumped masses and springs
+	\item \textbf{Track model:} Discrete support model with periodic structure
+	\item \textbf{Contact model:} Nonlinear spring representing wheel-rail interaction
+\end{enumerate}
+
+\section{Vehicle Model}
+\label{sec:vehicle_model}
+
+\subsection{Equations of Motion}
+\label{subsec:vehicle_eom}
+
+The vehicle is modeled as a multi-body system with the following degrees of freedom:
+
+\begin{itemize}
+	\item Car body vertical displacement: $z_c$
+	\item Bogie vertical displacements: $z_{b1}$, $z_{b2}$
+	\item Wheelset vertical displacements: $z_{w1}$, $z_{w2}$, $z_{w3}$, $z_{w4}$
+\end{itemize}
+
+The equations of motion for the car body are:
+
+\begin{equation}
+	m_c \ddot{z}_c + c_s (\dot{z}_c - \dot{z}_{b1}) + k_s (z_c - z_{b1}) + c_s (\dot{z}_c - \dot{z}_{b2}) + k_s (z_c - z_{b2}) = 0
+	\label{eq:car_body}
+\end{equation}
+
+For each bogie:
+
+\begin{equation}
+	\begin{split}
+		m_b \ddot{z}_{bi} &+ c_s (\dot{z}_{bi} - \dot{z}_c) + k_s (z_{bi} - z_c) \\
+		&+ c_p (\dot{z}_{bi} - \dot{z}_{w,2i-1}) + k_p (z_{bi} - z_{w,2i-1}) \\
+		&+ c_p (\dot{z}_{bi} - \dot{z}_{w,2i}) + k_p (z_{bi} - z_{w,2i}) = 0
+	\end{split}
+	\label{eq:bogie}
+\end{equation}
+
+For each wheelset:
+
+\begin{equation}
+	m_w \ddot{z}_{wi} + c_p (\dot{z}_{wi} - \dot{z}_{bj}) + k_p (z_{wi} - z_{bj}) + F_{ci} = 0
+	\label{eq:wheelset}
+\end{equation}
+
+where $F_{ci}$ is the contact force between wheel $i$ and the rail.
+
+\subsection{State-Space Formulation}
+\label{subsec:state_space}
+
+The system can be written in state-space form as:
+
+\begin{equation}
+	\mathbf{M} \ddot{\mathbf{z}} + \mathbf{C} \dot{\mathbf{z}} + \mathbf{K} \mathbf{z} = \mathbf{F}_c
+	\label{eq:state_space}
+\end{equation}
+
+where $\mathbf{M}$, $\mathbf{C}$, and $\mathbf{K}$ are the mass, damping, and stiffness matrices, and $\mathbf{F}_c$ is the vector of contact forces.
+
+\section{Track Model}
+\label{sec:track_model}
+
+\subsection{Discrete Support Model}
+\label{subsec:discrete_track}
+
+The track is modeled as a beam on discrete supports representing the sleepers. The equation of motion for the rail is:
+
+\begin{equation}
+	EI \frac{\partial^4 w}{\partial x^4} + \mu \frac{\partial^2 w}{\partial t^2} = -\sum_{i=1}^{N} F_i \delta(x - x_i) + F_c(x,t)
+	\label{eq:rail}
+\end{equation}
+
+where:
+\begin{itemize}
+	\item $EI$ is the bending stiffness of the rail
+	\item $\mu$ is the mass per unit length
+	\item $F_i$ are the support forces at sleeper positions $x_i$
+	\item $F_c(x,t)$ is the wheel-rail contact force
+\end{itemize}
+
+\subsection{Support Characteristics}
+\label{subsec:support}
+
+Each support (sleeper) is modeled as a spring-damper-mass system:
+
+\begin{equation}
+	m_s \ddot{z}_s + c_s \dot{z}_s + k_s z_s = F_{\text{rail}}
+	\label{eq:support}
+\end{equation}
+
+The support stiffness includes contributions from:
+\begin{itemize}
+	\item Rail pad stiffness: $k_{\text{pad}}$
+	\item Ballast stiffness: $k_{\text{ballast}}$
+	\item Subgrade stiffness: $k_{\text{sub}}$
+\end{itemize}
+
+Combined in series:
+\begin{equation}
+	\frac{1}{k_s} = \frac{1}{k_{\text{pad}}} + \frac{1}{k_{\text{ballast}}} + \frac{1}{k_{\text{sub}}}
+	\label{eq:series_stiffness}
+\end{equation}
+
+\section{Wheel-Rail Contact Model}
+\label{sec:contact_model}
+
+\subsection{Hertzian Contact}
+\label{subsec:hertz_contact}
+
+The wheel-rail contact is modeled using Hertzian contact theory. The contact force is:
+
+\begin{equation}
+	F_c = \begin{cases}
+		C_H \delta^{3/2} & \text{if } \delta > 0 \\
+		0 & \text{if } \delta \leq 0
+	\end{cases}
+	\label{eq:contact_force}
+\end{equation}
+
+where $\delta$ is the contact deformation and $C_H$ is the Hertzian contact coefficient:
+
+\begin{equation}
+	C_H = \frac{4}{3} E^* \sqrt{R}
+	\label{eq:hertz_coeff}
+\end{equation}
+
+with equivalent elastic modulus:
+\begin{equation}
+	\frac{1}{E^*} = \frac{1-\nu_1^2}{E_1} + \frac{1-\nu_2^2}{E_2}
+	\label{eq:equiv_modulus}
+\end{equation}
+
+\subsection{Contact Deformation}
+\label{subsec:contact_def}
+
+The contact deformation is calculated as:
+
+\begin{equation}
+	\delta = z_w - w_{\text{rail}}(x_w, t) - r(x_w)
+	\label{eq:contact_deformation}
+\end{equation}
+
+where:
+\begin{itemize}
+	\item $z_w$ is the wheelset vertical position
+	\item $w_{\text{rail}}$ is the rail deflection at the wheel position
+	\item $r(x_w)$ is the combined wheel and rail irregularity profile
+\end{itemize}
+
+\section{Track Irregularities}
+\label{sec:irregularities}
+
+\subsection{Spectral Representation}
+\label{subsec:spectral}
+
+Track irregularities are generated using power spectral density (PSD) functions. The one-sided PSD is given by:
+
+\begin{equation}
+	S(\Omega) = \frac{A \Omega_c^2}{(\Omega^2 + \Omega_r^2)(\Omega^2 + \Omega_c^2)}
+	\label{eq:psd}
+\end{equation}
+
+where:
+\begin{itemize}
+	\item $A$ is the roughness coefficient
+	\item $\Omega_c$ is the cut-off angular spatial frequency
+	\item $\Omega_r$ is the reference angular spatial frequency
+\end{itemize}
+
+\subsection{Time-Domain Generation}
+\label{subsec:time_domain}
+
+Irregularity profiles in the time domain are generated using inverse Fourier transform with random phase angles:
+
+\begin{equation}
+	r(x) = \sum_{i=1}^{N} \sqrt{2 S(\Omega_i) \Delta\Omega} \cos(\Omega_i x + \phi_i)
+	\label{eq:irregularity_profile}
+\end{equation}
+
+where $\phi_i$ are uniformly distributed random phase angles.
+
+\section{Numerical Implementation}
+\label{sec:implementation}
+
+\subsection{Time Integration}
+\label{subsec:integration}
+
+The equations of motion are integrated using the Newmark-$\beta$ method with parameters $\beta = 0.25$ and $\gamma = 0.5$ (constant acceleration method):
+
+\begin{align}
+	\mathbf{z}_{n+1} &= \mathbf{z}_n + \Delta t \dot{\mathbf{z}}_n + \frac{\Delta t^2}{2}[(1-2\beta)\ddot{\mathbf{z}}_n + 2\beta\ddot{\mathbf{z}}_{n+1}] \\
+	\dot{\mathbf{z}}_{n+1} &= \dot{\mathbf{z}}_n + \Delta t[(1-\gamma)\ddot{\mathbf{z}}_n + \gamma\ddot{\mathbf{z}}_{n+1}]
+	\label{eq:newmark}
+\end{align}
+
+\subsection{Contact Detection}
+\label{subsec:contact_detection}
+
+At each time step, the contact deformation is evaluated. If $\delta > 0$, the wheel is in contact and the force is calculated using Equation~\ref{eq:contact_force}. If $\delta \leq 0$, separation occurs and $F_c = 0$.
+
+\subsection{Computational Efficiency}
+\label{subsec:efficiency}
+
+The model achieves computational efficiency through:
+\begin{itemize}
+	\item Discrete representation avoiding continuous FE discretization
+	\item Efficient handling of periodic track structure
+	\item Adaptive time stepping based on contact state
+	\item Optimized linear algebra operations
+\end{itemize}
+
+Typical computation times are less than 1 minute for 100~m of track on a standard desktop computer.
+
+\section{Model Validation Strategy}
+\label{sec:validation_strategy}
+
+The model is validated through:
+\begin{enumerate}
+	\item Comparison with analytical solutions for simple cases
+	\item Verification against published simulation results
+	\item Validation with experimental field measurements
+	\item Sensitivity analysis and parameter studies
+\end{enumerate}
+
+Details of the validation are presented in Chapter~\ref{ch:examples}.

@@ -1,0 +1,170 @@
+% Chapter 3: Problem Description
+
+\chapter{Problem Description}
+\label{ch:problem}
+
+\section{Introduction}
+\label{sec:problem_intro}
+
+This chapter provides a detailed description of the vehicle-track interaction problem, including the physical system, relevant phenomena, and key parameters that influence impact load generation.
+
+\section{The Vehicle-Track System}
+\label{sec:system_description}
+
+\subsection{Vehicle Components}
+\label{subsec:vehicle}
+
+A typical railway vehicle consists of the following main components (see Figure~\ref{fig:vehicle_schematic}):
+
+\begin{itemize}
+	\item \textbf{Car body:} The main structure carrying passengers or freight
+	\item \textbf{Bogies:} Two bogies supporting the car body through secondary suspension
+	\item \textbf{Wheelsets:} Four wheelsets (two per bogie) connected to the bogie frame via primary suspension
+	\item \textbf{Suspension systems:} Primary and secondary suspensions providing isolation and stability
+\end{itemize}
+
+% Placeholder for figure
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.8\textwidth}{\centering\vspace{3cm}[Vehicle Schematic]\vspace{3cm}}}
+	\caption{Schematic representation of a railway vehicle with car body, bogies, and wheelsets}
+	\label{fig:vehicle_schematic}
+\end{figure}
+
+Typical mass and stiffness values for a passenger vehicle are:
+\begin{itemize}
+	\item Car body mass: $m_c = 30{,}000$~kg
+	\item Bogie mass: $m_b = 3{,}000$~kg
+	\item Wheelset mass: $m_w = 1{,}500$~kg
+	\item Primary suspension stiffness: $k_p = 1 \times 10^6$~N/m
+	\item Secondary suspension stiffness: $k_s = 0.3 \times 10^6$~N/m
+\end{itemize}
+
+\subsection{Track Structure}
+\label{subsec:track}
+
+The track structure consists of:
+
+\begin{itemize}
+	\item \textbf{Rails:} UIC 60 or similar profiles providing guidance and load distribution
+	\item \textbf{Rail pads:} Elastic pads between rail and sleeper for vibration isolation
+	\item \textbf{Sleepers:} Concrete or wooden sleepers distributing loads to ballast
+	\item \textbf{Ballast:} Graded stone providing drainage and load distribution
+	\item \textbf{Subballast and subgrade:} Supporting layers and natural soil
+\end{itemize}
+
+The vertical track stiffness varies significantly depending on support conditions:
+\begin{itemize}
+	\item At sleeper: $k_{\text{sleeper}} = 50{,}000$--$100{,}000$~kN/m
+	\item Mid-span: $k_{\text{mid}} = 20{,}000$--$40{,}000$~kN/m
+\end{itemize}
+
+\section{Dynamic Phenomena}
+\label{sec:phenomena}
+
+\subsection{Quasi-Static Response}
+\label{subsec:quasistatic}
+
+The quasi-static response refers to the slow-moving component of the track deflection as the train passes. This is primarily determined by the static axle load and the track stiffness.
+
+\subsection{Dynamic Amplification}
+\label{subsec:dynamic_amp}
+
+Dynamic amplification occurs when the load moves at speeds close to critical velocities. The dynamic amplification factor (DAF) is defined as:
+
+\begin{equation}
+	\text{DAF} = \frac{F_{\text{max}} - F_{\text{static}}}{F_{\text{static}}}
+	\label{eq:daf}
+\end{equation}
+
+For typical track structures, significant amplification occurs at speeds above 200~km/h on soft subgrades.
+
+\subsection{Impact Loading}
+\label{subsec:impact}
+
+Impact loads are transient, high-magnitude forces resulting from:
+
+\begin{enumerate}
+	\item \textbf{Wheel irregularities:} Wheel flats, out-of-round wheels, tread defects
+	\item \textbf{Rail irregularities:} Joints, welds, corrugation, dipped rails
+	\item \textbf{Combined effects:} Interaction between wheel and rail irregularities
+\end{enumerate}
+
+The magnitude of impact loads depends on:
+\begin{itemize}
+	\item Irregularity amplitude and wavelength
+	\item Train speed
+	\item Unsprung mass (wheelset mass)
+	\item Track stiffness and damping
+	\item Contact stiffness
+\end{itemize}
+
+\section{Characteristic Parameters}
+\label{sec:parameters}
+
+\subsection{Frequency Ranges}
+\label{subsec:frequencies}
+
+Different components of the vehicle-track system have characteristic frequency ranges:
+
+\begin{table}[htbp]
+	\centering
+	\caption{Characteristic frequency ranges of vehicle-track system}
+	\label{tab:frequencies}
+	\begin{tabular}{lc}
+		\toprule
+		Component & Frequency range [Hz] \\
+		\midrule
+		Car body bouncing & 0.5--2 \\
+		Bogie bouncing & 3--8 \\
+		Wheelset bouncing on track & 30--100 \\
+		Rail vibration on pads & 100--500 \\
+		Wheel-rail contact resonance & 500--2000 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{Critical Speeds}
+\label{subsec:critical_speeds}
+
+Critical speeds for various track wavelengths can be estimated from:
+
+\begin{equation}
+	v_{\text{crit}} = \lambda \cdot f_n
+	\label{eq:critical_speed}
+\end{equation}
+
+where $\lambda$ is the wavelength and $f_n$ is the natural frequency of the excited mode.
+
+\section{Problem Statement}
+\label{sec:problem_statement}
+
+The central problem addressed in this work is:
+
+\textit{How can we efficiently predict impact loads from railway traffic considering realistic track irregularities, vehicle characteristics, and operating conditions?}
+
+This requires a model that:
+\begin{enumerate}
+	\item Captures the relevant physics of vehicle-track interaction
+	\item Includes realistic representation of irregularities
+	\item Accounts for nonlinear contact mechanics
+	\item Provides computational efficiency for parameter studies
+	\item Can be validated against experimental measurements
+\end{enumerate}
+
+\section{Boundary Conditions and Assumptions}
+\label{sec:assumptions}
+
+The following assumptions and boundary conditions are adopted:
+
+\begin{itemize}
+	\item Analysis is limited to vertical dynamics
+	\item Lateral and longitudinal dynamics are neglected
+	\item Track is assumed to be straight (no curves)
+	\item Vehicle moves at constant speed
+	\item Material behavior is elastic (no plastic deformation)
+	\item Temperature effects are not considered
+	\item Aerodynamic forces are neglected
+\end{itemize}
+
+These assumptions are justified for the frequency range and phenomena of interest (impact loads in the range 1--100~Hz).

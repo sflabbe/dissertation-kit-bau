@@ -1,0 +1,80 @@
+% Chapter 1: Introduction
+
+\chapter{Introduction}
+\label{ch:introduction}
+
+\section{Motivation}
+\label{sec:motivation}
+
+The continuous growth of railway traffic, both in terms of passenger and freight transport, leads to increasing demands on the existing infrastructure. Modern high-speed trains and heavy-haul freight trains generate significant dynamic loads that affect the track structure, ballast, and substructure. These loads are particularly critical when wheel or rail irregularities are present, leading to impact loads that can exceed static loads by a factor of two or more.
+
+Understanding and predicting these impact loads is essential for:
+
+\begin{itemize}
+	\item Ensuring the safety and reliability of railway operations
+	\item Optimizing maintenance strategies and reducing lifecycle costs
+	\item Designing resilient track infrastructure
+	\item Minimizing environmental impacts such as noise and vibrations
+	\item Supporting the development of new high-speed corridors
+\end{itemize}
+
+Despite extensive research in this field, the accurate prediction of impact loads remains challenging due to the complex interaction between vehicle and track, the variability of track conditions, and the influence of numerous parameters.
+
+\section{State of Knowledge}
+\label{sec:state_of_knowledge}
+
+Current approaches to modeling vehicle-track interaction can be broadly classified into:
+
+\begin{enumerate}
+	\item \textbf{Analytical models:} Simplified approaches based on beam theory and moving load models \cite{Frohling1997, Nielsen2003}
+	\item \textbf{Finite element models:} Detailed representation of track components with high computational cost \cite{Knothe2003}
+	\item \textbf{Multi-body simulations:} Combining discrete vehicle dynamics with track models \cite{Zhai2004, Popp2003}
+	\item \textbf{Hybrid approaches:} Combining different modeling techniques for efficiency \cite{Nielsen2006}
+\end{enumerate}
+
+While each approach has its merits, there is a need for computationally efficient models that can capture the essential physics while allowing extensive parameter studies.
+
+\section{Objectives}
+\label{sec:objectives}
+
+The main objectives of this work are:
+
+\begin{enumerate}
+	\item Development of a discrete model for vehicle-track interaction that balances accuracy and computational efficiency
+	\item Investigation of the influence of key parameters on impact load generation
+	\item Validation of the model using experimental field data
+	\item Application of the model to practical engineering problems
+	\item Derivation of design recommendations for track maintenance and renewal
+\end{enumerate}
+
+\section{Scope and Methodology}
+\label{sec:scope}
+
+This work focuses on the vertical dynamics of the vehicle-track system in the frequency range relevant for impact loads (1--100~Hz). The methodology includes:
+
+\begin{itemize}
+	\item Formulation of a discrete model based on multi-body dynamics
+	\item Implementation of nonlinear contact mechanics
+	\item Consideration of realistic track irregularities
+	\item Systematic parameter studies using numerical simulations
+	\item Comparison with field measurements from operating railways
+\end{itemize}
+
+\section{Structure of the Thesis}
+\label{sec:structure}
+
+The thesis is organized as follows:
+
+\textbf{Chapter~\ref{ch:state_of_art}} provides a comprehensive review of existing models and measurement techniques for vehicle-track interaction.
+
+\textbf{Chapter~\ref{ch:problem}} describes the problem in detail, including the physical phenomena, relevant parameters, and boundary conditions.
+
+\textbf{Chapter~\ref{ch:modeling}} presents the development of the discrete model, including the mathematical formulation and implementation.
+
+\textbf{Chapter~\ref{ch:simulations}} discusses the numerical simulations and parameter studies performed to understand the system behavior.
+
+\textbf{Chapter~\ref{ch:examples}} demonstrates the application of the model to practical examples and validates the results against experimental data.
+
+\textbf{Chapter~\ref{ch:summary}} summarizes the main findings and conclusions of the work.
+
+\textbf{Chapter~\ref{ch:outlook}} provides an outlook on future research directions and potential extensions of the model.

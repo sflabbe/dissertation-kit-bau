@@ -1,0 +1,122 @@
+% Chapter 2: State of the Art
+
+\chapter{State of the Art}
+\label{ch:state_of_art}
+
+\section{Introduction}
+\label{sec:sota_intro}
+
+This chapter provides a comprehensive overview of existing research on vehicle-track interaction and impact load prediction. The focus is on analytical and numerical models, measurement techniques, and key findings from previous studies.
+
+\section{Vehicle-Track Interaction Models}
+\label{sec:vehicle_track_models}
+
+\subsection{Analytical Approaches}
+\label{subsec:analytical}
+
+Early work on vehicle-track interaction was based on analytical solutions. \citet{Timoshenko1926} investigated the response of beams on elastic foundations to moving loads, providing fundamental insights into the dynamic amplification phenomenon.
+
+The classical approach treats the rail as an infinite beam on an elastic foundation subjected to a moving constant or harmonic load \cite{Frohling1997}. The equation of motion can be written as:
+
+\begin{equation}
+	EI \frac{\partial^4 w}{\partial x^4} + c_f \frac{\partial w}{\partial t} + k_f w = F(x,t)
+	\label{eq:beam_foundation}
+\end{equation}
+
+where $EI$ is the bending stiffness, $c_f$ and $k_f$ are the foundation damping and stiffness, and $F(x,t)$ represents the moving load.
+
+\subsection{Finite Element Models}
+\label{subsec:fem}
+
+Finite element methods allow detailed representation of track components including rail, sleepers, ballast, and subgrade \cite{Knothe2003}. Three-dimensional FE models can capture complex geometric and material nonlinearities but require significant computational resources.
+
+\citet{Hall2003} developed a coupled vehicle-track FE model including soil-structure interaction effects. The model accurately predicted track deflections and contact forces but was limited to short track sections due to computational constraints.
+
+\subsection{Multi-Body System Models}
+\label{subsec:mbs}
+
+Multi-body system (MBS) models represent the vehicle as a system of rigid bodies connected by springs and dampers. The track is typically modeled as a discrete or continuous flexible structure. This approach provides a good balance between accuracy and efficiency \cite{Zhai2004}.
+
+Key developments in MBS modeling include:
+
+\begin{itemize}
+	\item Vehicle models with multiple degrees of freedom (car body, bogies, wheelsets)
+	\item Nonlinear contact mechanics (Hertzian contact, adhesion models)
+	\item Discrete or continuous track models
+	\item Integration with rail and wheel irregularity data
+\end{itemize}
+
+\section{Wheel-Rail Contact Mechanics}
+\label{sec:contact_mechanics}
+
+The wheel-rail contact is crucial for load transmission and wear. Hertz theory provides the foundation for calculating contact forces and deformations for elastic bodies \cite{Johnson1985}:
+
+\begin{equation}
+	F_N = \left(\frac{4}{3} E^* R^{1/2} \delta^{3/2}\right)
+	\label{eq:hertz}
+\end{equation}
+
+where $F_N$ is the normal force, $E^*$ is the equivalent elastic modulus, $R$ is the equivalent radius, and $\delta$ is the contact deflection.
+
+More sophisticated models account for:
+\begin{itemize}
+	\item Non-elliptical contact patches
+	\item Tangential forces and creepage
+	\item Plastic deformation and wear
+	\item Thermal effects
+\end{itemize}
+
+\section{Track Irregularities}
+\label{sec:track_irregularities}
+
+Track irregularities are a primary source of dynamic loads. They are typically characterized using:
+
+\begin{itemize}
+	\item \textbf{Wavelength-based classification:} Short (< 1~m), medium (1--25~m), long (> 25~m)
+	\item \textbf{Power spectral density functions:} Statistical description of irregularity amplitude vs. wavelength
+	\item \textbf{Measured profiles:} Direct measurement using track recording vehicles
+\end{itemize}
+
+\citet{ORE1989} established standard PSD functions for different track quality classes, widely used in simulation studies.
+
+\section{Impact Load Phenomena}
+\label{sec:impact_loads}
+
+Impact loads arise from discrete irregularities such as:
+
+\begin{itemize}
+	\item Wheel flats and out-of-round wheels
+	\item Rail joints and welds
+	\item Switches and crossings
+	\item Corrugation and other periodic defects
+\end{itemize}
+
+\citet{Nielsen2003} investigated the dynamic vehicle-track interaction at short wavelength irregularities and found that impact forces can reach 2--3 times the static load depending on train speed and irregularity amplitude.
+
+\section{Measurement Techniques}
+\label{sec:measurements}
+
+Experimental validation requires accurate measurement of:
+
+\begin{itemize}
+	\item \textbf{Wheel-rail forces:} Using strain gauges on wheelsets or rails
+	\item \textbf{Track deflections:} Using displacement transducers or photogrammetry
+	\item \textbf{Accelerations:} Using accelerometers on vehicles or track
+	\item \textbf{Track geometry:} Using track recording cars or portable devices
+\end{itemize}
+
+Modern measurement systems can record data at high sampling rates (> 1~kHz) enabling detailed analysis of impact events.
+
+\section{Summary and Research Gaps}
+\label{sec:sota_summary}
+
+While significant progress has been made in modeling vehicle-track interaction, several challenges remain:
+
+\begin{enumerate}
+	\item Need for computationally efficient models for extensive parameter studies
+	\item Better integration of measured track irregularity data
+	\item Improved validation across different operating conditions
+	\item Development of predictive tools for maintenance planning
+\end{enumerate}
+
+This work addresses these gaps by developing a discrete model that combines computational efficiency with sufficient accuracy for engineering applications.
