@@ -15,63 +15,76 @@
 %   \coreferee       - Co-referee (optional, hide if empty)
 %
 % Layout uses absolute font sizes and fixed-width parboxes for precise visual matching
+% CRITICAL: Uses \begingroup to force single spacing and zero parskip (overrides global settings)
 % -----------------------------------------------------------------------------
 
 \begin{titlepage}
 \thispagestyle{empty}
+\begingroup
 \centering
 
-% Top placement (title sits higher on page to match example)
-\vspace*{3.2cm}
+% Force title-page spacing (prevents mismatch vs example due to global settings)
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\ifdefined\singlespacing\singlespacing\fi
 
-% --- TITLE BLOCK (force wrapping with fixed-width parbox) ---
+% --- TOP: content starts higher than before (was 3.2cm, too low) ---
+\vspace*{2.3cm}
+
+% --- TITLE (dominant, like example; wrap width matters) ---
 {\fontsize{16}{19}\selectfont\bfseries
 \parbox{0.74\textwidth}{\centering \headtitle\par}\par}
 
-\vspace{2.0cm}
+\vspace{1.6cm}
 
 % --- DEGREE BLOCK ---
 {\fontsize{9.5}{11.5}\selectfont
 Zur Erlangung des akademischen Grades einer\par}
-\vspace{0.65cm}
-{\fontsize{12}{14}\selectfont\bfseries \doktorgrad\par}
+\vspace{0.6cm}
 
-\vspace{1.05cm}
+{\fontsize{12}{14}\selectfont\bfseries
+\doktorgrad\par}
 
-% --- FACULTY/INSTITUTE BLOCK (exact line breaks like example) ---
+\vspace{1.0cm}
+
+% --- FACULTY/INSTITUTE BLOCK (use parbox to match wrap/width) ---
 {\fontsize{9.5}{11.5}\selectfont
+\parbox{0.78\textwidth}{\centering
 von der Fakultät für\par
 \facultyname\par
-des \institutname\par}
+des \institutname\par
+}\par}
 
-\vspace{1.15cm}
+\vspace{1.0cm}
 
 % --- SUBMISSION TYPE + DISSERTATION ---
 {\fontsize{9.5}{11.5}\selectfont \submissiontype\par}
 \vspace{0.55cm}
+
 {\fontsize{12}{14}\selectfont\bfseries DISSERTATION\par}
 
-\vspace{0.90cm}
+\vspace{0.8cm}
 
 % --- AUTHOR BLOCK ---
 {\fontsize{9.5}{11.5}\selectfont von\par}
-\vspace{0.45cm}
+\vspace{0.4cm}
+
 {\fontsize{12}{14}\selectfont \authorname\par}
-\vspace{0.25cm}
+\vspace{0.2cm}
+
 {\fontsize{9.5}{11.5}\selectfont \birthline\par}
 
 \vfill
 
-% --- BOTTOM BLOCK (full width, positioned low on page like example) ---
+% --- BOTTOM BLOCK (full width, low on page) ---
 {\fontsize{9.5}{11.5}\selectfont
 \noindent
 \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
-\ifx\defensedate\undefined\else\ifx\defensedate\empty\else Tag der mündlichen Prüfung: & \defensedate\\\fi\fi
-\ifx\referee\undefined\else\ifx\referee\empty\else Hauptreferent: & \referee\\\fi\fi
-\ifx\coreferee\undefined\else\ifx\coreferee\empty\else Korreferent: & \coreferee\\\fi\fi
+\ifx\defensedate\empty\else Tag der mündlichen Prüfung: & \defensedate\\\fi
+\ifx\referee\empty\else Hauptreferent: & \referee\\\fi
+\ifx\coreferee\empty\else Korreferent: & \coreferee\\\fi
 \end{tabular*}\par}
 
-% Reduced bottom padding to position bottom block lower (was 1.8cm)
-\vspace*{1.0cm}
-
+\vspace*{0.8cm}
+\endgroup
 \end{titlepage}
