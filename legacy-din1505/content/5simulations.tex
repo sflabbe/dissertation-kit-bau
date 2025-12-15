@@ -1,0 +1,98 @@
+% Chapter 5: Numerical Simulations
+
+\chapter{Numerical Simulations and Parameter Studies}
+\label{ch:simulations}
+
+\section{Introduction}
+\label{sec:sim_intro}
+
+This chapter presents results of systematic numerical simulations to understand parameter influences on system behavior.
+
+\section{Reference Case}
+\label{sec:reference_case}
+
+A reference case is defined with baseline parameters:
+
+\begin{table}[htbp]
+	\centering
+	\caption{Reference case parameters}
+	\label{tab:reference_params}
+	\begin{tabular}{llc}
+		\toprule
+		Parameter & Description & Value \\
+		\midrule
+		$m_1$ & Primary mass & 1000 kg \\
+		$m_2$ & Secondary mass & 100 kg \\
+		$k$ & Stiffness & $1 \times 10^5$ N/m \\
+		$c$ & Damping & 1000 Ns/m \\
+		$F_0$ & Load amplitude & 1000 N \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Parameter Variations}
+\label{sec:param_variations}
+
+\subsection{Influence of Mass Ratio}
+\label{subsec:mass_ratio}
+
+Figure~\ref{fig:mass_ratio} shows the maximum response as a function of mass ratio $m_2/m_1$.
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.8\textwidth}{\centering\vspace{5cm}[Response vs. mass ratio]\vspace{5cm}}}
+	\caption{System response versus mass ratio}
+	\label{fig:mass_ratio}
+\end{figure}
+
+Key findings:
+\begin{itemize}
+	\item Response increases with decreasing mass ratio
+	\item Optimal ratio exists around 0.1--0.2
+	\item Very small ratios lead to instability
+\end{itemize}
+
+\subsection{Influence of Damping}
+\label{subsec:damping}
+
+Damping significantly affects peak response:
+
+\begin{table}[htbp]
+	\centering
+	\caption{Peak response for different damping values}
+	\label{tab:damping}
+	\begin{tabular}{cc}
+		\toprule
+		Damping ratio $\zeta$ & Peak response [mm] \\
+		\midrule
+		0.01 & 25.4 \\
+		0.05 & 12.8 \\
+		0.10 & 8.2 \\
+		0.20 & 5.1 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Frequency Domain Analysis}
+\label{sec:frequency_analysis}
+
+Transfer functions reveal system frequency response characteristics:
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.8\textwidth}{\centering\vspace{5cm}[Transfer function]\vspace{5cm}}}
+	\caption{System transfer function}
+	\label{fig:transfer_function}
+\end{figure}
+
+Peaks correspond to natural frequencies at approximately 8~Hz and 45~Hz.
+
+\section{Summary}
+\label{sec:sim_summary}
+
+Parameter studies reveal:
+\begin{enumerate}
+	\item Mass ratio is critical for system performance
+	\item Damping effectively reduces peak responses
+	\item Frequency characteristics determine resonance behavior
+\end{enumerate}

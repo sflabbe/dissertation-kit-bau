@@ -1,0 +1,82 @@
+% Chapter 4: Modeling Approach
+
+\chapter{Modeling Approach}
+\label{ch:modeling}
+
+\section{Introduction}
+\label{sec:modeling_intro}
+
+This chapter presents the development of the computational model. The model combines analytical formulations with numerical solution methods.
+
+\section{Model Architecture}
+\label{sec:architecture}
+
+The overall model consists of:
+\begin{enumerate}
+	\item System equations
+	\item Boundary conditions
+	\item Solution algorithm
+\end{enumerate}
+
+\section{Mathematical Formulation}
+\label{sec:formulation}
+
+\subsection{Equations of Motion}
+\label{subsec:equations}
+
+The equations of motion are derived using standard mechanics principles:
+\begin{equation}
+	m_1\ddot{x}_1 + c(\dot{x}_1 - \dot{x}_2) + k(x_1 - x_2) = F_1(t)
+	\label{eq:mass1}
+\end{equation}
+
+\begin{equation}
+	m_2\ddot{x}_2 + c(\dot{x}_2 - \dot{x}_1) + k(x_2 - x_1) = F_2(t)
+	\label{eq:mass2}
+\end{equation}
+
+\subsection{State-Space Form}
+\label{subsec:state_space}
+
+The system can be written in matrix form:
+\begin{equation}
+	\mathbf{M}\ddot{\mathbf{x}} + \mathbf{C}\dot{\mathbf{x}} + \mathbf{K}\mathbf{x} = \mathbf{F}(t)
+	\label{eq:matrix_form}
+\end{equation}
+
+where $\mathbf{M}$, $\mathbf{C}$, and $\mathbf{K}$ are the mass, damping, and stiffness matrices.
+
+\section{Numerical Implementation}
+\label{sec:implementation}
+
+\subsection{Time Integration}
+\label{subsec:integration}
+
+The Newmark-$\beta$ method is used with parameters $\beta = 0.25$ and $\gamma = 0.5$:
+\begin{align}
+	\mathbf{x}_{n+1} &= \mathbf{x}_n + \Delta t\dot{\mathbf{x}}_n + \frac{\Delta t^2}{2}[(1-2\beta)\ddot{\mathbf{x}}_n + 2\beta\ddot{\mathbf{x}}_{n+1}] \\
+	\dot{\mathbf{x}}_{n+1} &= \dot{\mathbf{x}}_n + \Delta t[(1-\gamma)\ddot{\mathbf{x}}_n + \gamma\ddot{\mathbf{x}}_{n+1}]
+	\label{eq:newmark}
+\end{align}
+
+\subsection{Solution Algorithm}
+\label{subsec:algorithm}
+
+The solution procedure involves:
+\begin{enumerate}
+	\item Initialize state variables
+	\item Loop over time steps
+	\item Solve for accelerations
+	\item Update displacements and velocities
+	\item Store results
+\end{enumerate}
+
+\section{Validation Strategy}
+\label{sec:validation_strategy}
+
+The model is validated through:
+\begin{enumerate}
+	\item Comparison with analytical solutions
+	\item Verification against published results
+	\item Sensitivity analysis
+\end{enumerate}

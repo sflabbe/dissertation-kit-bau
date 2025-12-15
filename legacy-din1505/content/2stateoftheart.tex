@@ -1,0 +1,63 @@
+% Chapter 2: State of the Art
+
+\chapter{State of the Art}
+\label{ch:state_of_art}
+
+\section{Introduction}
+\label{sec:sota_intro}
+
+This chapter provides an overview of existing research on numerical modeling and simulation approaches. The focus is on analytical and computational methods relevant to the problem at hand.
+
+\section{Analytical Approaches}
+\label{sec:analytical}
+
+Early work was based on analytical solutions. Classical approaches treat the system using simplified assumptions \cite{Smith2010, Johnson2015}.
+
+The basic equation of motion can be written as:
+\begin{equation}
+	m\ddot{x} + c\dot{x} + kx = F(t)
+	\label{eq:eom_basic}
+\end{equation}
+
+where $m$ is mass, $c$ is damping, $k$ is stiffness, and $F(t)$ is the external force.
+
+\section{Numerical Methods}
+\label{sec:numerical}
+
+\subsection{Finite Element Methods}
+\label{subsec:fem}
+
+Finite element methods allow detailed representation of complex geometries \cite{Wilson2012}. These methods discretize the domain into elements and solve the weak form of the governing equations.
+
+\subsection{Time Integration Schemes}
+\label{subsec:integration}
+
+Common time integration methods include:
+\begin{itemize}
+	\item Explicit methods (e.g., central difference)
+	\item Implicit methods (e.g., Newmark-$\beta$)
+	\item Adaptive time stepping approaches
+\end{itemize}
+
+\section{Parameter Sensitivity}
+\label{sec:sensitivity}
+
+Previous studies have investigated the influence of various parameters on system response \cite{Brown2013, Davis2016}. Key parameters include:
+\begin{itemize}
+	\item Material properties
+	\item Boundary conditions
+	\item Loading characteristics
+	\item Geometric parameters
+\end{itemize}
+
+\section{Summary and Research Gaps}
+\label{sec:sota_summary}
+
+While significant progress has been made, several challenges remain:
+\begin{enumerate}
+	\item Need for computationally efficient models
+	\item Better validation across different conditions
+	\item Development of practical design tools
+\end{enumerate}
+
+This work addresses these gaps by developing an efficient model combining accuracy with computational performance.
