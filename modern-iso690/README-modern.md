@@ -24,19 +24,19 @@ This is the **modern version** of the dissertation template using the **ISO 690*
 To compile this dissertation, use the following sequence:
 
 ```bash
-lualatex dissertation-modern
+lualatex -interaction=nonstopmode dissertation-modern
 biber dissertation-modern
-lualatex dissertation-modern
-lualatex dissertation-modern
+lualatex -interaction=nonstopmode dissertation-modern
+lualatex -interaction=nonstopmode dissertation-modern
 ```
 
 **Alternative with XeLaTeX:**
 
 ```bash
-xelatex dissertation-modern
+xelatex -interaction=nonstopmode dissertation-modern
 biber dissertation-modern
-xelatex dissertation-modern
-xelatex dissertation-modern
+xelatex -interaction=nonstopmode dissertation-modern
+xelatex -interaction=nonstopmode dissertation-modern
 ```
 
 Or use a LaTeX IDE like TeXstudio with:

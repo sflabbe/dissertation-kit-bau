@@ -27,10 +27,10 @@ The `plaindin-upgraded.bst` file includes the following fixes over the original 
 To compile this dissertation, use the following sequence:
 
 ```bash
-pdflatex dissertation
+pdflatex -interaction=nonstopmode dissertation
 bibtex dissertation
-pdflatex dissertation
-pdflatex dissertation
+pdflatex -interaction=nonstopmode dissertation
+pdflatex -interaction=nonstopmode dissertation
 ```
 
 Or use a LaTeX IDE like TeXstudio, TeXmaker, or Overleaf with the build sequence set to:
