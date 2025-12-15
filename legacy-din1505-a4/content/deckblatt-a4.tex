@@ -1,12 +1,12 @@
 % -----------------------------------------------------------------------------
 % Deckblatt / Title page (KIT Bau - dissertation template) - A4 VERSION
-% Refactored to match KIT Bau example layout (Mareike Kohm M.Sc.)
+% Precisely matched to KIT Bau example layout (Mareike Kohm M.Sc.)
 %
 % Required macros (define in main file):
 %   \headtitle       - Thesis title (allows manual line breaks with \\)
 %   \doktorgrad      - Exact string: DOKTOR-INGENIEURS or DOKTOR-INGENIEURIN
-%   \facultyname     - Faculty name (default: Fakultät für Bauingenieur-, Geo- und Umweltwissenschaften)
-%   \institutname    - Institute name (default: Karlsruher Institut für Technologie (KIT))
+%   \facultyname     - Faculty name ONLY (e.g., "Bauingenieur-, Geo- und Umweltwissenschaften")
+%   \institutname    - Institute name with genitive article (e.g., "Karlsruher Instituts für Technologie (KIT)")
 %   \submissiontype  - "genehmigte" (approved) or "eingereichte" (submitted)
 %   \authorname      - Full author name including academic suffix (e.g., "Mareike Kohm M.Sc.")
 %   \birthline       - Birth info: "geb. in [Stadt]" or "aus [Geburtsort, Land]"
@@ -14,57 +14,64 @@
 %   \referee         - Main referee (optional, hide if empty)
 %   \coreferee       - Co-referee (optional, hide if empty)
 %
-% Robust layout using flexible vertical spacing (\vspace* + \vfill)
+% Layout uses absolute font sizes and fixed-width parboxes for precise visual matching
 % -----------------------------------------------------------------------------
 
 \begin{titlepage}
 \thispagestyle{empty}
 \centering
 
-\vspace*{2.5cm}
+% Top placement (title sits higher on page to match example)
+\vspace*{3.2cm}
 
-% Title (large, bold, multi-line allowed)
-{\LARGE\bfseries \headtitle\par}
+% --- TITLE BLOCK (force wrapping with fixed-width parbox) ---
+{\fontsize{16}{19}\selectfont\bfseries
+\parbox{0.74\textwidth}{\centering \headtitle\par}\par}
 
-\vspace{1.5cm}
+\vspace{2.0cm}
 
-% Academic degree section
-{\small Zur Erlangung des akademischen Grades einer\par}
-\vspace{0.6cm}
-{\large\bfseries \doktorgrad\par}
+% --- DEGREE BLOCK ---
+{\fontsize{9.5}{11.5}\selectfont
+Zur Erlangung des akademischen Grades einer\par}
+\vspace{0.65cm}
+{\fontsize{12}{14}\selectfont\bfseries \doktorgrad\par}
 
-\vspace{1.0cm}
+\vspace{1.05cm}
 
-% Faculty and institute
-{\small von der \facultyname\par}
-{\small des \institutname\par}
+% --- FACULTY/INSTITUTE BLOCK (exact line breaks like example) ---
+{\fontsize{9.5}{11.5}\selectfont
+von der Fakultät für\par
+\facultyname\par
+des \institutname\par}
 
-\vspace{1.2cm}
+\vspace{1.15cm}
 
-% Submission type and dissertation label
-{\small \submissiontype\par}
-\vspace{0.6cm}
-{\large\bfseries DISSERTATION\par}
+% --- SUBMISSION TYPE + DISSERTATION ---
+{\fontsize{9.5}{11.5}\selectfont \submissiontype\par}
+\vspace{0.55cm}
+{\fontsize{12}{14}\selectfont\bfseries DISSERTATION\par}
 
-\vspace{0.8cm}
+\vspace{0.90cm}
 
-% Author information
-{\small von\par}
-\vspace{0.4cm}
-{\large \authorname\par}
-\vspace{0.2cm}
-{\small \birthline\par}
+% --- AUTHOR BLOCK ---
+{\fontsize{9.5}{11.5}\selectfont von\par}
+\vspace{0.45cm}
+{\fontsize{12}{14}\selectfont \authorname\par}
+\vspace{0.25cm}
+{\fontsize{9.5}{11.5}\selectfont \birthline\par}
 
 \vfill
 
-% Bottom block: full-width table with left labels and right-aligned values
+% --- BOTTOM BLOCK (full width, positioned low on page like example) ---
+{\fontsize{9.5}{11.5}\selectfont
 \noindent
 \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
 \ifx\defensedate\undefined\else\ifx\defensedate\empty\else Tag der mündlichen Prüfung: & \defensedate\\\fi\fi
 \ifx\referee\undefined\else\ifx\referee\empty\else Hauptreferent: & \referee\\\fi\fi
 \ifx\coreferee\undefined\else\ifx\coreferee\empty\else Korreferent: & \coreferee\\\fi\fi
-\end{tabular*}
+\end{tabular*}\par}
 
-\vspace*{1.8cm}
+% Reduced bottom padding to position bottom block lower (was 1.8cm)
+\vspace*{1.0cm}
 
 \end{titlepage}
