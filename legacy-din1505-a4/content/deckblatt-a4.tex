@@ -1,52 +1,70 @@
 % -----------------------------------------------------------------------------
-% Deckblatt / Title page (KIT Bau - anonymized template) - A4 VERSION
-% Use with: \headtitle (title), \autor (author), \birthplace, \faculty,
-%          and \institute defined in the main file.
-% Robust layout using titlepage environment with flexible vertical spacing
+% Deckblatt / Title page (KIT Bau - dissertation template) - A4 VERSION
+% Refactored to match KIT Bau example layout (Mareike Kohm M.Sc.)
+%
+% Required macros (define in main file):
+%   \headtitle       - Thesis title (allows manual line breaks with \\)
+%   \doktorgrad      - Exact string: DOKTOR-INGENIEURS or DOKTOR-INGENIEURIN
+%   \facultyname     - Faculty name (default: Fakultät für Bauingenieur-, Geo- und Umweltwissenschaften)
+%   \institutname    - Institute name (default: Karlsruher Institut für Technologie (KIT))
+%   \submissiontype  - "genehmigte" (approved) or "eingereichte" (submitted)
+%   \authorname      - Full author name including academic suffix (e.g., "Mareike Kohm M.Sc.")
+%   \birthline       - Birth info: "geb. in [Stadt]" or "aus [Geburtsort, Land]"
+%   \defensedate     - Defense date (optional, hide if empty)
+%   \referee         - Main referee (optional, hide if empty)
+%   \coreferee       - Co-referee (optional, hide if empty)
+%
+% Robust layout using flexible vertical spacing (\vspace* + \vfill)
 % -----------------------------------------------------------------------------
 
 \begin{titlepage}
 \thispagestyle{empty}
 \centering
 
-\vspace*{2cm}
-{\Large\bfseries \headtitle\par}
+\vspace*{2.5cm}
+
+% Title (large, bold, multi-line allowed)
+{\LARGE\bfseries \headtitle\par}
 
 \vspace{1.5cm}
-{Zur Erlangung des akademischen Grades eines\par}
-\vspace{0.75cm}
-{\Large\bfseries DOKTOR-INGENIEURS\par}
+
+% Academic degree section
+{\small Zur Erlangung des akademischen Grades einer\par}
+\vspace{0.6cm}
+{\large\bfseries \doktorgrad\par}
+
+\vspace{1.0cm}
+
+% Faculty and institute
+{\small von der \facultyname\par}
+{\small des \institutname\par}
+
+\vspace{1.2cm}
+
+% Submission type and dissertation label
+{\small \submissiontype\par}
+\vspace{0.6cm}
+{\large\bfseries DISSERTATION\par}
+
+\vspace{0.8cm}
+
+% Author information
+{\small von\par}
+\vspace{0.4cm}
+{\large \authorname\par}
+\vspace{0.2cm}
+{\small \birthline\par}
 
 \vfill
 
-{bei der \faculty\par}
-{des \institute\par}
+% Bottom block: full-width table with left labels and right-aligned values
+\noindent
+\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+\ifx\defensedate\undefined\else\ifx\defensedate\empty\else Tag der mündlichen Prüfung: & \defensedate\\\fi\fi
+\ifx\referee\undefined\else\ifx\referee\empty\else Hauptreferent: & \referee\\\fi\fi
+\ifx\coreferee\undefined\else\ifx\coreferee\empty\else Korreferent: & \coreferee\\\fi\fi
+\end{tabular*}
 
-\vfill
-
-% Switch between "eingereichte" (submitted) and "genehmigte" (approved)
-{eingereichte\par}
-% {genehmigte\par}
-\vspace{0.75cm}
-{\Large\bfseries DISSERTATION\par}
-
-\vfill
-
-{von\par}
-\vspace{0.5cm}
-{\Large\bfseries Dipl.-Ing. \autor\par}
-\vspace{0.25cm}
-{aus \birthplace\par}
-
-\vfill
-
-% Optional examination details (commented out for submission)
-\begin{tabular}{@{}ll@{}}
-% Tag der m\"undlichen Pr\"ufung: & [TT. Monat JJJJ]\\
-% Referent:    & Prof. Dr.-Ing. [Erstgutachter]\\
-% Korreferent: & Prof. Dr.-Ing. [Zweitgutachter]\\
-\end{tabular}
-
-\vspace{1cm}
+\vspace*{1.8cm}
 
 \end{titlepage}
