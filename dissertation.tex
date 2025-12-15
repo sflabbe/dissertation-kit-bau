@@ -1,0 +1,135 @@
+%% Template for Dissertations
+
+% Improved German hyphenation according to current standard
+%\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+
+% Load document class
+% - No dots after numbering
+% - Font size 10pt
+% - Language packages: English and German (new spelling)
+% - Page size: a5paper (change to a4paper if needed)
+\documentclass[numbers=noenddot,a5paper,10pt,english]{scrbook}
+%\documentclass[halfparskip,numbers=noenddot,a5paper,10pt,english,ngerman]{scrbook}
+
+% Additional packages
+\usepackage{booktabs}
+\usepackage{wrapfig}
+\usepackage{bm}
+
+% Fix subsubsection numbering
+\setcounter{secnumdepth}{\subsubsectionnumdepth}
+
+% -------------------- General Document Settings ------------------------------
+
+% PDF title
+\newcommand{\pdftitle}{A Discrete Model for the Prediction of Impact Loads from Railway Traffic}
+
+% Author (placeholder - replace with actual author name)
+\newcommand{\autor}{Author Name}
+
+% Load options and packages
+\input{dokOptions}
+
+% Document title
+\newcommand{\headtitle}{A Discrete Model for the Prediction of Impact Loads from Railway Traffic}
+
+% CO2 shorthand
+\newcommand{\coo}{CO\textsubscript{2}\ }
+
+% -------------------- Main Document ------------------------------
+\begin{document}
+
+	% Disable page numbering initially
+	\pagenumbering{gobble}
+
+	% Use predefined page style
+	\pagestyle{scrheadings}
+
+	% Start page numbering at 5 (KSP adds 4 labeled pages before)
+	%\setcounter{page}{5}
+
+	% Preface
+	\markboth{Preface}{Preface}
+	%\include{content/preface}
+
+	% Title page
+	\cleardoublepage
+	\include{content/deckblatt}
+	\cleardoublepage
+
+	% German abstract
+	\markboth{Kurzfassung}{Kurzfassung}
+	\pagenumbering{roman}
+	\setcounter{page}{1}
+	\include{content/abstract}
+
+	% English abstract
+	\markboth{Abstract}{Abstract}
+	\include{content/abstractEN}
+
+	% Acknowledgments
+	\markboth{Danksagung}{Danksagung}
+	\include{content/acknowledgment}
+
+	% Table of contents
+	%\begin{spacing}{1.29}  % Adjust for better page layout if needed
+	\tableofcontents
+	%\end{spacing}
+
+	% List of abbreviations and symbols
+	\cleardoublepage
+	\markboth{\nomname}{\nomname}
+	\input{content/symbols}
+	\printnomenclature
+
+	% Main content chapters
+	\mainmatter
+
+	% Set line spacing within tables to 1.4
+	\renewcommand{\arraystretch}{1.4}
+
+	% Use Arabic page numbering
+	\pagenumbering{arabic}
+
+	% Include main chapters
+	\include{content/1introduction}
+	\include{content/2stateoftheart}
+	\include{content/3descriptionproblem}
+	\include{content/4modeling}
+	\include{content/5simulations}
+	\include{content/6appliedexamples}
+
+	% Set chapter heading to appear on right side of header
+	\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ \  #1}{\thechapter\ \  #1}}
+
+	\include{content/7summary}
+	\include{content/8ausblick}
+
+	% Appendix
+	\appendix
+	\include{content/appendix}
+
+	% List of figures
+	\addcontentsline{toc}{chapter}{List of Figures}
+	\listoffigures
+
+	% List of tables
+	\addcontentsline{toc}{chapter}{List of Tables}
+	\listoftables
+
+	% List of algorithms
+	\listofalgorithms
+
+	% List of equations (commented out)
+	% \listofequations
+
+	% Bibliography
+	\setlength{\parskip}{0.4\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+	\addcontentsline{toc}{chapter}{Bibliography}
+	\bibliography{content/bibliography}
+
+	% CV for submission (commented out)
+	%\cleardoublepage
+	%\include{content/lebenslauf}
+
+\end{document}
