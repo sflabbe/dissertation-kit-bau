@@ -1,6 +1,11 @@
 % Modern Document Options and Package Loading (LuaLaTeX/XeLaTeX)
 % This file contains all package imports and document settings for modern LaTeX engines
 
+% ==================== PAGE HEADER/FOOTER SETUP (MUST BE FIRST) ====================
+% KOMA-Script page headers and footers - MUST be loaded before geometry
+\usepackage[markcase=ignoreuppercase,headsepline,footsepline]{scrlayer-scrpage}
+\automark[section]{chapter}
+
 % -------------------- Encoding and Language ------------------------------
 % Note: No inputenc needed for LuaLaTeX/XeLaTeX (native UTF-8)
 % No fontenc needed (uses fontspec instead)
@@ -10,6 +15,9 @@
 
 % Alternative: Use babel if preferred
 % \usepackage[english,ngerman]{babel}
+
+% -------------------- Spacing (Before Geometry) ------------------------------
+\usepackage[onehalfspacing]{setspace}
 
 % -------------------- Modern Typography and Fonts ------------------------------
 \usepackage{fontspec}
@@ -115,6 +123,9 @@
 ]{hyperref}
 
 % -------------------- Page Layout ------------------------------
+% Page margin settings (before geometry)
+\setlength{\topskip}{10.5pt}
+
 % Match original document's geometry settings
 \usepackage{geometry}
 \geometry{
@@ -133,12 +144,21 @@
 % Page settings
 \raggedbottom
 \setlength{\parindent}{0pt}
-\setlength{\topskip}{10.5pt}
+
+% Header and footer spacing
+\setlength{\headsep}{5mm}
+\setlength{\footskip}{10mm}
 
 % Prevent widows and orphans
 \clubpenalty = 10000
 \widowpenalty = 10000
 \displaywidowpenalty = 10000
+
+% Header line thickness
+\KOMAoptions{headsepline=0.5pt}
+
+% Footnote formatting
+\deffootnote[0.6em]{0.6em}{0em}{\textsuperscript{\thefootnotemark\ }}
 
 % Float placement parameters to match original
 \renewcommand{\floatpagefraction}{0.7}
@@ -148,19 +168,6 @@
 
 % Emergency stretch for better line breaking
 \setlength{\emergencystretch}{4pt}
-
-% -------------------- Headers and Footers ------------------------------
-\usepackage[markcase=ignoreuppercase,headsepline,footsepline]{scrlayer-scrpage}
-\automark[section]{chapter}
-\setlength{\headsep}{5mm}
-\setlength{\footskip}{10mm}
-\KOMAoptions{headsepline=0.5pt}
-
-% Footnote formatting
-\deffootnote[0.6em]{0.6em}{0em}{\textsuperscript{\thefootnotemark\ }}
-
-% -------------------- Spacing ------------------------------
-\usepackage[onehalfspacing]{setspace}
 
 % -------------------- Lists ------------------------------
 \usepackage{enumitem}
