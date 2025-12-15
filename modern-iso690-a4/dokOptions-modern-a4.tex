@@ -1,0 +1,349 @@
+% Modern Document Options and Package Loading (LuaLaTeX/XeLaTeX)
+% This file contains all package imports and document settings for modern LaTeX engines
+
+% ==================== PAGE HEADER/FOOTER SETUP (MUST BE FIRST) ====================
+% KOMA-Script page headers and footers - MUST be loaded before geometry
+\usepackage[markcase=ignoreuppercase,headsepline,footsepline]{scrlayer-scrpage}
+\automark[section]{chapter}
+
+% -------------------- Encoding and Language ------------------------------
+% Note: No inputenc needed for LuaLaTeX/XeLaTeX (native UTF-8)
+% No fontenc needed (uses fontspec instead)
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setotherlanguage{german}
+
+% Alternative: Use babel if preferred
+% \usepackage[english,ngerman]{babel}
+
+% -------------------- Spacing (Before Geometry) ------------------------------
+\usepackage[onehalfspacing]{setspace}
+
+% -------------------- Modern Typography and Fonts ------------------------------
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+% Set main fonts to match original (Adobe Times / Helvetica equivalents)
+\setmainfont{TeX Gyre Termes}    % Times-like (equivalent to mathptmx)
+\setsansfont{TeX Gyre Heros}     % Helvetica-like (equivalent to phv)
+\setmonofont{TeX Gyre Cursor}    % Courier-like (equivalent to pcr)
+\setmathfont{TeX Gyre Termes Math}
+
+\usepackage{microtype}
+
+% -------------------- Mathematics ------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% -------------------- Graphics and Figures ------------------------------
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% -------------------- Tables ------------------------------
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{longtable}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+% -------------------- Algorithms ------------------------------
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% -------------------- Bibliography (biblatex-iso690) ------------------------------
+\usepackage[
+  backend=biber,
+  style=iso-numeric,
+  sorting=nyt,
+  autolang=hyphen,
+  bibencoding=UTF8,
+  doi=true,
+  url=true,
+  isbn=false,
+  maxbibnames=99,
+  minbibnames=99
+]{biblatex}
+
+% Add bibliography resource
+\addbibresource{content/bibliography.bib}
+
+% Source mapping: Convert legacy 'lastchecked' field to 'urldate'
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=lastchecked]
+      \step[fieldset=urldate, origfieldval]
+    }
+  }
+}
+
+% Customize bibliography format (optional)
+\DefineBibliographyStrings{english}{%
+  bibliography = {Bibliography},
+  references = {References},
+}
+
+\DefineBibliographyStrings{german}{%
+  bibliography = {Literaturverzeichnis},
+  references = {Referenzen},
+}
+
+% -------------------- Nomenclature and Index ------------------------------
+\usepackage{nomencl}
+\makenomenclature
+\renewcommand{\nomname}{List of Abbreviations and Symbols}
+
+% Index
+\usepackage{makeidx}
+\makeindex
+
+% -------------------- Hyperlinks and References ------------------------------
+\usepackage[
+  pdftex,
+  pdfauthor={\autor},
+  pdftitle={\pdftitle},
+  pdfsubject={Dissertation},
+  pdfkeywords={Optimization, Computational Methods, System Analysis},
+  pdfproducer={LaTeX},
+  pdfcreator={lualatex},
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=blue,
+  bookmarks=true,
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  pdfpagemode=UseOutlines,
+  unicode=true
+]{hyperref}
+
+% -------------------- Page Layout ------------------------------
+% Page margin settings (before geometry)
+\setlength{\topskip}{10.5pt}
+
+% A4 paper geometry settings
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  headheight=1.5\baselineskip,
+  top=25mm,
+  lines=46,
+  heightrounded=true,
+  bindingoffset=15mm,
+  textwidth=160mm
+}
+
+% Alternative A5 paper setup (commented out)
+%\geometry{a5paper,headheight=1.5\baselineskip,top=25mm,lines=31,heightrounded=true,bindingoffset=15mm,textwidth=106mm}
+
+% Page settings
+\raggedbottom
+\setlength{\parindent}{0pt}
+
+% Header and footer spacing
+\setlength{\headsep}{5mm}
+\setlength{\footskip}{10mm}
+
+% Prevent widows and orphans
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+% Header line thickness
+\KOMAoptions{headsepline=0.5pt}
+
+% Footnote formatting
+\deffootnote[0.6em]{0.6em}{0em}{\textsuperscript{\thefootnotemark\ }}
+
+% Float placement parameters to match original
+\renewcommand{\floatpagefraction}{0.7}
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+
+% Emergency stretch for better line breaking
+\setlength{\emergencystretch}{4pt}
+
+% -------------------- Lists ------------------------------
+\usepackage{enumitem}
+\setlist{nosep}
+
+% -------------------- Captions and Float Control ------------------------------
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{ragged2e}
+\usepackage[verbose]{placeins}
+\captionsetup{
+  format=plain,
+  labelfont=bf,
+  justification=RaggedRight,
+  font=footnotesize
+}
+
+% German caption names
+\addto\captionsgerman{\renewcommand{\figurename}{Bild}}
+\addto\captionsgerman{\renewcommand{\tablename}{Tabelle}}
+
+% -------------------- Units and Numbers ------------------------------
+\usepackage{siunitx}
+\sisetup{
+  locale=UK,
+  per-mode=symbol,
+  group-separator={,},
+  group-minimum-digits=4,
+  output-decimal-marker={.},
+  round-mode=places,
+  round-precision=2
+}
+
+% -------------------- Source Code Listings ------------------------------
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!60!black},
+  stringstyle=\color{red},
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  captionpos=b
+}
+
+% -------------------- PDF Inclusion ------------------------------
+\usepackage{pdfpages}
+
+% -------------------- Quotes ------------------------------
+\usepackage{csquotes}
+
+% -------------------- CV Package ------------------------------
+\usepackage{currvita}
+
+% -------------------- Improved URL Breaking ------------------------------
+\usepackage{xurl}
+
+% -------------------- Custom Commands ------------------------------
+
+% Vector notation
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+% Differential operators
+\newcommand{\diff}{\mathrm{d}}
+\newcommand{\Diff}{\mathrm{D}}
+
+% Common abbreviations
+\newcommand{\eg}{e.\,g.\xspace}
+\newcommand{\ie}{i.\,e.\xspace}
+\newcommand{\cf}{cf.\xspace}
+\newcommand{\etc}{etc.\xspace}
+
+% Math operators
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\diag}{diag}
+
+% -------------------- Theorem Environments ------------------------------
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+
+% -------------------- Chapter and Section Formatting ------------------------------
+% Match original font sizes and families (Helvetica/TeX Gyre Heros for headings)
+\addtokomafont{chapter}{\sffamily\fontsize{17}{17}\bfseries}
+\addtokomafont{section}{\sffamily\fontsize{13}{13}\bfseries}
+\addtokomafont{subsection}{\sffamily\fontsize{11}{11}\bfseries}
+\addtokomafont{subsubsection}{\sffamily\fontsize{9}{9}\bfseries}
+
+% Caption and page header/footer fonts
+\addtokomafont{caption}{\footnotesize}
+\setkomafont{captionlabel}{\footnotesize}
+\setkomafont{pageheadfoot}{\footnotesize}
+\setkomafont{pagenumber}{\normalsize}
+
+% Heading formatting with number boxes
+\renewcommand*{\chapterformat}{\makebox[1cm][l]{\thechapter\autodot}}
+\renewcommand*{\sectionformat}{\makebox[1cm][l]{\thesection\autodot}}
+\renewcommand*{\subsectionformat}{\makebox[1cm][l]{\thesubsection\autodot}}
+\renewcommand*{\subsubsectionformat}{\makebox[1.1cm][l]{\thesubsubsection\autodot}}
+
+% -------------------- TOC Depth and Formatting ------------------------------
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+% Table of contents formatting with tocloft
+\usepackage[titles]{tocloft}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
+\renewcommand{\cftchappagefont}{\sffamily\normalsize\bfseries}
+\renewcommand\cftchapfont{\sffamily\normalsize\bfseries}
+\renewcommand\cftsecfont{\sffamily\fontsize{11}{11}}
+\renewcommand\cftsecpagefont{\sffamily\fontsize{11}{11}}
+
+% List indentation
+\renewcommand{\cftfigindent}{0cm}
+\renewcommand{\cfttabindent}{0cm}
+
+
+% -------------------- Hyphenation ------------------------------
+\hyphenation{
+  mathe-matics
+  geo-metry
+  para-meter
+  simu-lation
+  opti-mi-zation
+}
+
+% -------------------- Additional Packages ------------------------------
+\usepackage{xspace}
+\usepackage{ifthen}
+\usepackage{calc}
+
+% -------------------- KOMA-Script Compatibility ------------------------------
+\usepackage{scrhack}
+
+% -------------------- Equation List Setup ------------------------------
+% Equation list setup (for list of equations)
+\AtBeginDocument{%
+  \newcaptionname{ngerman}\equationname{Formel}%
+  \newcaptionname{ngerman}\listequationname{Formelverzeichnis}%
+  \newcaptionname{english}\equationname{Equation}%
+  \newcaptionname{english}\listequationname{List of Equations}%
+}
+
+\DeclareNewTOC[
+  tocentryindent=0pt,
+  tocentrynumwidth=2em,
+  type=equation,
+  name={Eq.},
+  types=equations,
+  listname={List of Equations},
+]{equ}
+
+\newcommand{\equationentry}[2][\theequation]{%
+  \addxcontentsline{equ}{equation}[{#1}]{\kern 1em #2}%
+}
+
+\BeforeStartingTOC[equ]{\def\autodot{:}}
+
+% -------------------- TikZ Libraries ------------------------------
+\usetikzlibrary{
+  arrows,
+  shapes,
+  positioning,
+  decorations.pathreplacing,
+  calc,
+  patterns
+}

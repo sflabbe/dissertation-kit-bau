@@ -1,0 +1,119 @@
+%%% Dissertation Template - Modern ISO 690 Version (A4)
+%%% Created: 2025-12-15
+%%% Optimized for LuaLaTeX/XeLaTeX with A4 paper format
+
+% Document class with KOMA-Script
+\documentclass[numbers=noenddot,a4paper,10pt,english,cleardoublepage=empty]{scrbook}
+
+% PDF settings (PDF 1.7 compatibility, compression, suppress warnings)
+\directlua{
+  pdf.setminorversion(7)
+  pdf.setobjcompresslevel(3)
+  pdf.suppresswarningpagegroup = 1
+}
+
+% Subsubsection numbering depth
+\setcounter{secnumdepth}{\subsubsectionnumdepth}
+
+% Essential packages
+\usepackage{auxhook}
+\usepackage{booktabs}
+\usepackage{wrapfig}
+\usepackage{bm}
+
+% Custom hyphenation rules
+\hyphenation{guide-line non-con-ser-va-tive con-ser-va-tive tem-po-ral}
+\hyphenation{ve-loc-i-ty ve-loc-i-ties en-er-gy-ab-sorb-ing ab-sorb-ing}
+\hyphenation{de-pen-den-cy}
+
+% Document metadata
+\newcommand{\pdftitle}{Optimization Methods for Complex Systems}
+\newcommand{\autor}{Author Name}
+\newcommand{\headtitle}{Optimization Methods for Complex Systems}
+\newcommand{\coo}{CO\textsubscript{2}\ }
+
+% Load modern document options and packages (A4)
+\input{dokOptions-modern-a4}
+
+% ==================== MAIN DOCUMENT ====================
+\begin{document}
+
+% Unnumbered front matter (title pages)
+\hypersetup{pageanchor=false}
+\pagenumbering{gobble}
+\pagestyle{scrheadings}
+
+% Cover page
+\cleardoublepage
+\include{content/deckblatt}
+\cleardoublepage
+
+% Begin Roman numeral pagination
+\pagenumbering{roman}
+\setcounter{page}{1}
+\hypersetup{pageanchor=true}
+
+% German abstract
+\markboth{Kurzfassung}{Kurzfassung}
+\selectlanguage{german}
+\include{content/abstract}
+
+% English abstract
+\markboth{Abstract}{Abstract}
+\selectlanguage{english}
+\include{content/abstractEN}
+
+% Acknowledgments
+\markboth{Danksagung}{Danksagung}
+\include{content/acknowledgment}
+
+% Table of contents
+\tableofcontents
+
+% Nomenclature
+\cleardoublepage
+\markboth{\nomname}{\nomname}
+\input{content/symbols}
+\printnomenclature
+
+% ==================== MAIN CONTENT ====================
+\mainmatter
+\renewcommand{\arraystretch}{1.4}
+\pagenumbering{arabic}
+
+% Chapters in correct order
+\include{content/1introduction}
+\include{content/2stateoftheart}
+\include{content/3descriptionproblem}
+\include{content/4modeling}
+\include{content/5simulations}
+\include{content/6appliedexamples}
+
+% Adjust chapter marks for summary/outlook
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ \  #1}{\thechapter\ \  #1}}
+\include{content/7summary}
+\include{content/8ausblick}
+
+% ==================== APPENDIX ====================
+\appendix
+\include{content/appendix}
+
+% Lists
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+\listofalgorithms
+
+% Bibliography (biblatex format)
+\setlength{\parskip}{0.4\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+\addcontentsline{toc}{chapter}{Bibliography}
+\printbibliography[heading=bibintoc,title={Bibliography}]
+
+% Curriculum Vitae (commented out for anonymized version)
+%\addcontentsline{toc}{chapter}{Lebenslauf}
+%\include{content/lebenslauf}
+
+\end{document}

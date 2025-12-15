@@ -1,8 +1,8 @@
 # Dissertation Kit - KIT Template (Dual Version)
 
-This repository contains **two complete LaTeX dissertation templates** based on the Karlsruhe Institute of Technology (KIT) format.
+This repository contains **four complete LaTeX dissertation templates** based on the Karlsruhe Institute of Technology (KIT) format, available in both **A5** and **A4** paper sizes.
 
-## 📦 Two Versions Available
+## 📦 Four Versions Available
 
 ### Choose Your Version:
 
@@ -12,6 +12,7 @@ This repository contains **two complete LaTeX dissertation templates** based on 
 | **Engine** | pdfLaTeX | LuaLaTeX / XeLaTeX |
 | **Bibliography** | BibTeX + .bst | biblatex + biber |
 | **Fonts** | Traditional LaTeX | Modern Unicode fonts |
+| **Paper Sizes** | A5 and A4 | A5 and A4 |
 | **Status** | Stable, proven | Current standard |
 | **Best for** | Older requirements, compatibility | New dissertations, modern features |
 
@@ -19,7 +20,9 @@ This repository contains **two complete LaTeX dissertation templates** based on 
 
 ## 🎯 **Recommended: Modern ISO 690 Version**
 
-📂 **Location:** `modern-iso690/`
+📂 **Locations:**
+- **A5 Paper (148mm × 210mm):** `modern-iso690/` - Traditional dissertation format
+- **A4 Paper (210mm × 297mm):** `modern-iso690-a4/` - Standard office paper size
 
 **Why choose this:**
 - ✅ Current ISO 690 standard (replaces old DIN 1505)
@@ -29,7 +32,7 @@ This repository contains **two complete LaTeX dissertation templates** based on 
 - ✅ Better handling of URLs, DOIs
 - ✅ Automatic `lastchecked` → `urldate` conversion
 
-**Quick start:**
+**Quick start (A5):**
 ```bash
 cd modern-iso690/
 lualatex -interaction=nonstopmode dissertation-modern
@@ -38,20 +41,33 @@ lualatex -interaction=nonstopmode dissertation-modern
 lualatex -interaction=nonstopmode dissertation-modern
 ```
 
-📖 **See:** [`modern-iso690/README-modern.md`](modern-iso690/README-modern.md)
+**Quick start (A4):**
+```bash
+cd modern-iso690-a4/
+lualatex -interaction=nonstopmode dissertation-modern-a4
+biber dissertation-modern-a4
+lualatex -interaction=nonstopmode dissertation-modern-a4
+lualatex -interaction=nonstopmode dissertation-modern-a4
+```
+
+📖 **See:**
+- A5: [`modern-iso690/README-modern.md`](modern-iso690/README-modern.md)
+- A4: [`modern-iso690-a4/README-modern-a4.md`](modern-iso690-a4/README-modern-a4.md)
 
 ---
 
 ## 🔧 Legacy DIN 1505 Version
 
-📂 **Location:** `legacy-din1505/`
+📂 **Locations:**
+- **A5 Paper (148mm × 210mm):** `legacy-din1505/` - Traditional dissertation format
+- **A4 Paper (210mm × 297mm):** `legacy-din1505-a4/` - Standard office paper size
 
 **When to use this:**
 - Required by older institutional guidelines
 - Working with existing pdfLaTeX-only workflows
 - Maximum compatibility with older systems
 
-**Quick start:**
+**Quick start (A5):**
 ```bash
 cd legacy-din1505/
 pdflatex -interaction=nonstopmode dissertation
@@ -60,7 +76,18 @@ pdflatex -interaction=nonstopmode dissertation
 pdflatex -interaction=nonstopmode dissertation
 ```
 
-📖 **See:** [`legacy-din1505/README-legacy.md`](legacy-din1505/README-legacy.md)
+**Quick start (A4):**
+```bash
+cd legacy-din1505-a4/
+pdflatex -interaction=nonstopmode dissertation-a4
+bibtex dissertation-a4
+pdflatex -interaction=nonstopmode dissertation-a4
+pdflatex -interaction=nonstopmode dissertation-a4
+```
+
+📖 **See:**
+- A5: [`legacy-din1505/README-legacy.md`](legacy-din1505/README-legacy.md)
+- A4: [`legacy-din1505-a4/README-legacy-a4.md`](legacy-din1505-a4/README-legacy-a4.md)
 
 ---
 
@@ -84,17 +111,30 @@ Both versions include:
 ```
 dissertation-kit-bau/
 │
-├── modern-iso690/              ← RECOMMENDED
+├── modern-iso690/              ← RECOMMENDED (A5)
 │   ├── dissertation-modern.tex     (Main document)
 │   ├── dokOptions-modern.tex       (Modern packages + biblatex)
 │   ├── README-modern.md            (Full documentation)
 │   └── content/                    (All chapters)
 │
-├── legacy-din1505/             ← For compatibility
+├── modern-iso690-a4/           ← RECOMMENDED (A4)
+│   ├── dissertation-modern-a4.tex  (Main document)
+│   ├── dokOptions-modern-a4.tex    (Modern packages + biblatex)
+│   ├── README-modern-a4.md         (Full documentation)
+│   └── content/                    (All chapters)
+│
+├── legacy-din1505/             ← For compatibility (A5)
 │   ├── dissertation.tex            (Main document)
 │   ├── dokOptions.tex              (Traditional packages)
 │   ├── plaindin-upgraded.bst       (Fixed DIN 1505 style)
 │   ├── README-legacy.md            (Full documentation)
+│   └── content/                    (All chapters)
+│
+├── legacy-din1505-a4/          ← For compatibility (A4)
+│   ├── dissertation-a4.tex         (Main document)
+│   ├── dokOptions-a4.tex           (Traditional packages)
+│   ├── plaindin-upgraded.bst       (Fixed DIN 1505 style)
+│   ├── README-legacy-a4.md         (Full documentation)
 │   └── content/                    (All chapters)
 │
 └── README.md                   ← You are here

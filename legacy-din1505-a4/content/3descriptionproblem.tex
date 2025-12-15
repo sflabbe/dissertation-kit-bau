@@ -1,0 +1,84 @@
+% Chapter 3: Problem Description
+
+\chapter{Problem Description}
+\label{ch:problem}
+
+\section{Introduction}
+\label{sec:problem_intro}
+
+This chapter provides a detailed description of the problem, including the physical system, relevant phenomena, and key parameters.
+
+\section{System Description}
+\label{sec:system_description}
+
+The system consists of coupled components that interact through defined interfaces. The main components include:
+\begin{itemize}
+	\item Primary subsystem with mass $m_1$
+	\item Secondary subsystem with mass $m_2$
+	\item Coupling elements with stiffness $k$ and damping $c$
+\end{itemize}
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.8\textwidth}{\centering\vspace{3cm}[System Schematic]\vspace{3cm}}}
+	\caption{Schematic representation of the system}
+	\label{fig:system_schematic}
+\end{figure}
+
+Typical parameter values are:
+\begin{itemize}
+	\item Primary mass: $m_1 = 1000$~kg
+	\item Secondary mass: $m_2 = 100$~kg
+	\item Stiffness: $k = 1 \times 10^5$~N/m
+	\item Damping: $c = 1000$~Ns/m
+\end{itemize}
+
+\section{Dynamic Phenomena}
+\label{sec:phenomena}
+
+The system exhibits various dynamic behaviors depending on excitation and parameters.
+
+\subsection{Resonance}
+\label{subsec:resonance}
+
+Resonance occurs when excitation frequency matches natural frequency. The amplification factor is:
+\begin{equation}
+	A_f = \frac{x_{\text{max}}}{x_{\text{static}}}
+	\label{eq:amplification}
+\end{equation}
+
+\section{Characteristic Parameters}
+\label{sec:parameters}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Characteristic frequency ranges}
+	\label{tab:frequencies}
+	\begin{tabular}{lc}
+		\toprule
+		Mode & Frequency [Hz] \\
+		\midrule
+		First mode & 5--10 \\
+		Second mode & 20--40 \\
+		Third mode & 50--100 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Problem Statement}
+\label{sec:problem_statement}
+
+The central problem is:
+
+\textit{How can we efficiently predict system response considering parameter variations and different loading conditions?}
+
+\section{Assumptions}
+\label{sec:assumptions}
+
+The following assumptions are adopted:
+\begin{itemize}
+	\item Linear material behavior
+	\item Small displacement theory
+	\item Constant parameters during analysis
+	\item Deterministic loading
+\end{itemize}

@@ -1,0 +1,253 @@
+% ==================== PAGE LAYOUT SETTINGS ====================
+% KOMA-Script page headers and footers
+\usepackage[markcase=ignoreuppercase,headsepline,footsepline]{scrlayer-scrpage}
+\automark[section]{chapter}
+
+% Line spacing (1.5 spacing)
+\usepackage[onehalfspacing]{setspace}
+
+% Page margins
+\setlength{\topskip}{10.5pt}
+
+% Geometry setup for A4 paper
+\usepackage[a4paper,headheight=1.5\baselineskip,top=25mm,lines=46,heightrounded=true,bindingoffset=15mm,textwidth=160mm]{geometry}
+
+% Alternative A5 paper setup (commented out)
+%\usepackage[a5paper,headheight=1.5\baselineskip,top=25mm,lines=31,heightrounded=true,bindingoffset=15mm,textwidth=106mm]{geometry}
+
+% Ragged bottom (no vertical stretching)
+\raggedbottom
+
+% Header and footer spacing
+\setlength{\headsep}{5mm}
+\setlength{\footskip}{10mm}
+
+% No paragraph indentation
+\setlength{\parindent}{0pt}
+
+% Prevent widows and orphans
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+% Header line thickness
+\KOMAoptions{headsepline=0.5pt}
+
+% Footnote formatting
+\deffootnote[0.6em]{0.6em}{0em}{\textsuperscript{\thefootnotemark\ }}
+
+% Float placement parameters
+\renewcommand{\floatpagefraction}{0.7}
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+
+% Emergency stretch for better line breaking
+\setlength{\emergencystretch}{4pt}
+
+% ==================== CHARACTER ENCODING & LANGUAGE ====================
+% Language packages
+\usepackage[english, ngerman]{babel}
+\babelprovide[hyphenrules=ngerman-x-latest]{ngerman}
+\useshorthands{"}
+
+% Font encoding
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Table of contents formatting
+\usepackage[titles]{tocloft}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}
+\renewcommand{\cftchappagefont}{\fontfamily{phv}\normalsize\bfseries}
+\renewcommand\cftchapfont{\fontfamily{phv}\normalsize\bfseries}
+\renewcommand\cftsecfont{\fontfamily{phv}\fontsize{11}{11}}
+\renewcommand\cftsecpagefont{\fontfamily{phv}\fontsize{11}{11}}
+
+% Index
+\usepackage{makeidx}
+
+% ==================== FONTS ====================
+% Adobe Times as main font
+\usepackage{mathptmx}
+\usepackage{microtype}
+
+% KOMA-Script font settings for headings
+\addtokomafont{chapter}{\fontfamily{phv}\fontsize{17}{17}\bfseries}
+\addtokomafont{section}{\fontfamily{phv}\fontsize{13}{13}\bfseries}
+\addtokomafont{subsection}{\fontfamily{phv}\fontsize{11}{11}\bfseries}
+\addtokomafont{subsubsection}{\fontfamily{phv}\fontsize{9}{9}\bfseries}
+
+% Caption and page header/footer fonts
+\addtokomafont{caption}{\footnotesize}
+\setkomafont{captionlabel}{\footnotesize}
+\setkomafont{pageheadfoot}{\footnotesize}
+\setkomafont{pagenumber}{\normalsize}
+
+% ==================== COLORS ====================
+\usepackage{color}
+\color[cmyk]{0,0,0,1}
+
+% ==================== HEADING FORMATTING ====================
+\renewcommand*{\chapterformat}{\makebox[1cm][l]{\thechapter\autodot}}
+\renewcommand*{\sectionformat}{\makebox[1cm][l]{\thesection\autodot}}
+\renewcommand*{\subsectionformat}{\makebox[1cm][l]{\thesubsection\autodot}}
+\renewcommand*{\subsubsectionformat}{\makebox[1.1cm][l]{\thesubsubsection\autodot}}
+
+% German caption names
+\addto\captionsngerman{\renewcommand{\figurename}{Bild}}
+\addto\captionsngerman{\renewcommand{\tablename}{Tabelle}}
+
+% Bibliography style
+\bibliographystyle{plaindin-upgraded}
+
+% ==================== ADDITIONAL PACKAGES ====================
+% Graphics and rotation
+\usepackage{graphicx}
+\usepackage{rotating}
+
+% Tables
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage[justification=RaggedRight]{caption}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\usepackage{multirow}
+
+% Mathematics
+\usepackage{amsmath,amssymb}
+\usepackage{textcomp}
+
+% Mathematical operators
+\newcommand{\real}{\operatorname{Re}}
+\newcommand{\opdiv}{\operatorname{div}}
+\newcommand{\rot}{\operatorname{rot}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\imag}{\operatorname{Im}}
+\newcommand{\imein}{\operatorname{j}}
+
+% URL handling
+\usepackage[hyphens]{url}
+\usepackage{etoolbox}
+\appto\UrlBreaks{\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\/\do\.}
+
+% List indentation
+\renewcommand{\cftfigindent}{0cm}
+\renewcommand{\cfttabindent}{0cm}
+
+% Improved URL breaking (2025 addition)
+\emergencystretch=2em
+\usepackage{xurl}
+
+% Hyperref setup
+\usepackage[hidelinks,
+    pdfpagemode = UseNone,
+    pdfpagelayout = TwoColumnRight,
+    pdfauthor = {\autor},
+    pdftitle = {\pdftitle}]
+    {hyperref}
+
+% ==================== NOMENCLATURE ====================
+\usepackage[english]{nomencl}
+\let\sym\nomenclature
+\setlength{\nomlabelwidth}{.2\textwidth}
+\newcommand{\nomunit}[1]{\renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+\setlength\nomitemsep{-\parsep}
+\makenomenclature
+
+% Index
+\makeindex
+
+% ==================== ALGORITHM PACKAGES ====================
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% ==================== FIGURE PACKAGES ====================
+\usepackage{subcaption}
+\usepackage[verbose]{placeins}
+
+% ==================== KOMA-SCRIPT HACKS ====================
+\usepackage{scrhack}
+
+% Equation list setup
+\AtBeginDocument{%
+  \newcaptionname{ngerman}\equationname{Formel}%
+  \newcaptionname{ngerman}\listequationname{Formelverzeichnis}%
+}
+
+\DeclareNewTOC[
+  tocentryindent=0pt,
+  tocentrynumwidth=2em,
+  type=equation,
+  name={Gl.},
+  types=equations,
+  listname={Formelverzeichnis},
+]{equ}
+
+\newcommand{\equationentry}[2][\theequation]{%
+  \addxcontentsline{equ}{equation}[{#1}]{\kern 1em #2}%
+}
+
+\BeforeStartingTOC[equ]{\def\autodot{:}}
+
+% ==================== SI UNITS ====================
+\usepackage{siunitx}
+\sisetup{
+  locale=UK,
+  per-mode=symbol,
+  group-separator={,},
+  group-minimum-digits=4,
+  output-decimal-marker={.},
+  round-mode=places,
+  round-precision=2
+}
+
+% ==================== ADVANCED MATH ====================
+\usepackage{mathtools}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+% ==================== CODE LISTINGS ====================
+\usepackage{listings}
+\usepackage{listingsutf8}
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=6pt,
+  tabsize=2,
+  showstringspaces=false,
+  columns=fullflexible,
+  breakatwhitespace=false,
+  keepspaces=true,
+}
+
+% ==================== CV PACKAGE ====================
+\usepackage{currvita}
+
+% ==================== PDF INCLUSION ====================
+\usepackage{pdfpages}
+
+% ==================== QUOTES ====================
+\usepackage{csquotes}
+
+% ==================== TIKZ AND PGFPLOTS ====================
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+
+% TikZ libraries
+\usetikzlibrary{
+  arrows,
+  shapes,
+  positioning,
+  decorations.pathreplacing,
+  calc,
+  patterns
+}
+
+% ==================== ADDITIONAL UTILITIES ====================
+\usepackage{xspace}
+\usepackage{ifthen}
