@@ -32,10 +32,10 @@ This repository contains **two complete LaTeX dissertation templates** based on 
 **Quick start:**
 ```bash
 cd modern-iso690/
-lualatex dissertation-modern
+lualatex -interaction=nonstopmode dissertation-modern
 biber dissertation-modern
-lualatex dissertation-modern
-lualatex dissertation-modern
+lualatex -interaction=nonstopmode dissertation-modern
+lualatex -interaction=nonstopmode dissertation-modern
 ```
 
 📖 **See:** [`modern-iso690/README-modern.md`](modern-iso690/README-modern.md)
@@ -54,10 +54,10 @@ lualatex dissertation-modern
 **Quick start:**
 ```bash
 cd legacy-din1505/
-pdflatex dissertation
+pdflatex -interaction=nonstopmode dissertation
 bibtex dissertation
-pdflatex dissertation
-pdflatex dissertation
+pdflatex -interaction=nonstopmode dissertation
+pdflatex -interaction=nonstopmode dissertation
 ```
 
 📖 **See:** [`legacy-din1505/README-legacy.md`](legacy-din1505/README-legacy.md)
@@ -121,10 +121,10 @@ dissertation-kit-bau/
 
 3. **Compile:**
    ```bash
-   lualatex dissertation-modern
+   lualatex -interaction=nonstopmode dissertation-modern
    biber dissertation-modern
-   lualatex dissertation-modern
-   lualatex dissertation-modern
+   lualatex -interaction=nonstopmode dissertation-modern
+   lualatex -interaction=nonstopmode dissertation-modern
    ```
 
 ### Legacy Version
@@ -143,11 +143,11 @@ dissertation-kit-bau/
 
 3. **Compile:**
    ```bash
-   pdflatex dissertation
+   pdflatex -interaction=nonstopmode dissertation
    bibtex dissertation
    makeindex dissertation.nlo -s nomencl.ist -o dissertation.nls
-   pdflatex dissertation
-   pdflatex dissertation
+   pdflatex -interaction=nonstopmode dissertation
+   pdflatex -interaction=nonstopmode dissertation
    ```
 
 ---
