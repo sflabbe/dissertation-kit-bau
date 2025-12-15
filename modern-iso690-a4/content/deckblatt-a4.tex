@@ -43,25 +43,24 @@
 \providecommand{\coreferee}{}
 
 \newlength{\TitleBlockHeight}
-\setlength{\TitleBlockHeight}{2.6cm} % TUNE: 2.4–2.9cm until it matches example
+\setlength{\TitleBlockHeight}{2.4cm} % TUNE: 2.4–2.9cm until it matches example
 
-\vspace*{2.1cm} % TUNE: 1.9–2.4cm
+\vspace*{1.95cm} % TUNE: 1.9–2.4cm - title sits higher
 
-% fixed-height title block (key change!)
+% fixed-height title block - title positioned at top (no vertical centering)
 \vbox to \TitleBlockHeight{%
-  \vfil
   {\fontsize{16}{19}\selectfont\bfseries
-   \parbox{0.74\textwidth}{\centering \headtitle\par}\par}%
-  \vfil
+   \parbox{0.73\textwidth}{\centering \headtitle\par}\par}% narrower width for better line breaks
+  \vfill
 }
 
-\vspace{1.6cm} % TUNE: 1.4–1.8cm
+\vspace{1.7cm} % TUNE: 1.4–1.8cm - adjusted for higher title
 
 {\fontsize{9.5}{11.5}\selectfont Zur Erlangung des akademischen Grades einer\par}
-\vspace{0.6cm}
+\vspace{0.65cm}
 {\fontsize{12}{14}\selectfont\bfseries \doktorgrad\par}
 
-\vspace{1.0cm}
+\vspace{1.05cm}
 
 {\fontsize{9.5}{11.5}\selectfont
 \parbox{0.78\textwidth}{\centering
@@ -88,11 +87,11 @@ des \institutname\par
 
 {\fontsize{9.5}{11.5}\selectfont
 \noindent
-\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+\begin{tabular}{@{}p{0.58\textwidth}@{}l@{}}
 \ifx\defensedate\empty\else Tag der mündlichen Prüfung: & \defensedate\\\fi
 \ifx\referee\empty\else Hauptreferent: & \referee\\\fi
 \ifx\coreferee\empty\else Korreferent: & \coreferee\\\fi
-\end{tabular*}\par}
+\end{tabular}\par}
 
 \vspace*{0.0cm} % IMPORTANT: keep near zero so bottom block sits low
 \endgroup
