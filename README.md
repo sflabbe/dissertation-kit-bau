@@ -6,7 +6,8 @@ This repository contains a LaTeX template for dissertations based on the Karlsru
 
 - `dissertation.tex` - Main LaTeX document
 - `myplaindin.bst` - Bibliography style file (DIN 1505 German citation standard)
-- `dokOptions` - Document options and package configurations (referenced but not included)
+- `dokOptions.tex` - Document options and package configurations
+- `content/` - Directory containing all content files (mockup content included)
 
 ## Structure
 
@@ -44,11 +45,31 @@ The dissertation is structured as follows:
    \newcommand{\autor}{Author Name}
    ```
 
-2. Create the required content files in the `content/` directory
+2. Edit the mockup content files in the `content/` directory to add your actual content
 
-3. Ensure you have the `dokOptions` file with necessary package configurations
+3. Update the bibliography in `content/bibliography.bib` with your references
 
-4. Compile the document using your preferred LaTeX compiler (pdflatex, xelatex, etc.)
+4. Compile the document:
+   ```bash
+   pdflatex dissertation
+   bibtex dissertation
+   makeindex dissertation.nlo -s nomencl.ist -o dissertation.nls
+   pdflatex dissertation
+   pdflatex dissertation
+   ```
+
+## Mockup Content
+
+This template includes complete mockup content for a dissertation on railway impact loads. The content demonstrates:
+
+- Proper academic structure and formatting
+- Cross-referencing between chapters
+- Mathematical equations and formulas
+- Tables and figure placeholders
+- Bibliography management with BibTeX
+- Nomenclature with symbols and abbreviations
+
+**Note:** All content is placeholder text and should be replaced with your actual research.
 
 ## Configuration
 
