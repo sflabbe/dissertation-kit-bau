@@ -6,9 +6,11 @@
 \documentclass[numbers=noenddot,a5paper,10pt,english,cleardoublepage=empty]{scrbook}
 
 % PDF settings (PDF 1.7 compatibility, compression, suppress warnings)
-\pdfminorversion=7
-\pdfobjcompresslevel=3
-\pdfsuppresswarningpagegroup=1
+\directlua{
+  pdf.setminorversion(7)
+  pdf.setobjcompresslevel(3)
+  pdf.suppresswarningpagegroup = 1
+}
 
 % Subsubsection numbering depth
 \setcounter{secnumdepth}{\subsubsectionnumdepth}
