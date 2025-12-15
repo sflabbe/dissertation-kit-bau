@@ -1,0 +1,109 @@
+% Appendix
+
+\chapter{Appendix}
+\label{ch:appendix}
+
+\section{Mathematical Derivations}
+\label{sec:math_derivations}
+
+\subsection{Derivation of Equations of Motion}
+\label{subsec:derivation_eom}
+
+Starting from Newton's second law for the coupled system:
+
+\begin{equation}
+	F_1 = m_1\ddot{x}_1
+	\label{eq:newton1}
+\end{equation}
+
+\begin{equation}
+	F_2 = m_2\ddot{x}_2
+	\label{eq:newton2}
+\end{equation}
+
+The coupling forces are:
+\begin{equation}
+	F_c = k(x_1 - x_2) + c(\dot{x}_1 - \dot{x}_2)
+	\label{eq:coupling_force}
+\end{equation}
+
+Combining yields the system equations presented in Chapter~\ref{ch:modeling}.
+
+\section{Model Parameters}
+\label{sec:model_parameters}
+
+\subsection{Standard Parameter Values}
+\label{subsec:standard_params}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Standard parameter values used in simulations}
+	\label{tab:standard_params}
+	\begin{tabular}{llc}
+		\toprule
+		Parameter & Symbol & Value \\
+		\midrule
+		Primary mass & $m_1$ [kg] & 1000 \\
+		Secondary mass & $m_2$ [kg] & 100 \\
+		Stiffness & $k$ [N/m] & $1 \times 10^5$ \\
+		Damping & $c$ [Ns/m] & 1000 \\
+		Load amplitude & $F_0$ [N] & 1000 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Numerical Methods}
+\label{sec:numerical_methods}
+
+\subsection{Newmark Integration}
+\label{subsec:newmark}
+
+The Newmark-$\beta$ method uses update equations:
+
+\begin{equation}
+	\mathbf{x}_{n+1} = \mathbf{x}_n + \Delta t\dot{\mathbf{x}}_n + \frac{\Delta t^2}{2}[(1-2\beta)\ddot{\mathbf{x}}_n + 2\beta\ddot{\mathbf{x}}_{n+1}]
+	\label{eq:newmark_disp}
+\end{equation}
+
+For stability, $\beta = 0.25$ is typically used.
+
+\subsection{Time Step Selection}
+\label{subsec:timestep}
+
+The time step is selected based on:
+\begin{equation}
+	\Delta t \leq \frac{T_{\min}}{20}
+	\label{eq:timestep_criterion}
+\end{equation}
+
+where $T_{\min}$ is the shortest period of interest.
+
+\section{Additional Results}
+\label{sec:additional_results}
+
+\subsection{Convergence Studies}
+\label{subsec:convergence}
+
+Convergence was verified by varying time step and comparing results. Results converged for $\Delta t < 0.001$~s.
+
+\subsection{Sensitivity Analysis}
+\label{subsec:sensitivity}
+
+Sensitivity to parameter variations was investigated:
+\begin{itemize}
+	\item Mass: $\pm 10\%$ variation causes $\pm 5\%$ response change
+	\item Stiffness: $\pm 10\%$ variation causes $\pm 8\%$ response change
+	\item Damping: $\pm 10\%$ variation causes $\pm 3\%$ response change
+\end{itemize}
+
+\section{Software Implementation}
+\label{sec:software}
+
+The model is implemented in MATLAB/Python. Main components:
+\begin{itemize}
+	\item \texttt{system\_model.m}: System equations
+	\item \texttt{integrator.m}: Time integration
+	\item \texttt{postprocess.m}: Results analysis
+\end{itemize}
+
+Typical computation time: less than 10 seconds for 1000 time steps.
