@@ -60,8 +60,9 @@ The dissertation is structured as follows:
 
 ## Mockup Content
 
-This template includes complete mockup content for a dissertation on railway impact loads. The content demonstrates:
+This template includes complete mockup content demonstrating proper dissertation structure. The content uses generic academic placeholder text suitable for any technical dissertation topic.
 
+**Content features:**
 - Proper academic structure and formatting
 - Cross-referencing between chapters
 - Mathematical equations and formulas
@@ -69,7 +70,7 @@ This template includes complete mockup content for a dissertation on railway imp
 - Bibliography management with BibTeX
 - Nomenclature with symbols and abbreviations
 
-**Note:** All content is placeholder text and should be replaced with your actual research.
+**Note:** All content is generic placeholder text (not related to any specific research topic) and should be replaced with your actual research.
 
 ## Configuration
 

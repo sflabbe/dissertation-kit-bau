@@ -6,232 +6,93 @@
 \section{Introduction}
 \label{sec:sim_intro}
 
-This chapter presents the results of systematic numerical simulations performed to understand the influence of key parameters on impact load generation. Parameter studies are conducted to identify critical combinations of vehicle speed, track stiffness, irregularity characteristics, and vehicle properties.
+This chapter presents results of systematic numerical simulations to understand parameter influences on system behavior.
 
-\section{Reference Case Definition}
+\section{Reference Case}
 \label{sec:reference_case}
 
-A reference case is defined with the following parameters:
+A reference case is defined with baseline parameters:
 
 \begin{table}[htbp]
 	\centering
-	\caption{Parameters for reference case}
+	\caption{Reference case parameters}
 	\label{tab:reference_params}
 	\begin{tabular}{llc}
 		\toprule
 		Parameter & Description & Value \\
 		\midrule
-		$v$ & Train speed & 160 km/h \\
-		$m_c$ & Car body mass & 30,000 kg \\
-		$m_b$ & Bogie mass & 3,000 kg \\
-		$m_w$ & Wheelset mass & 1,500 kg \\
-		$k_s$ & Secondary suspension stiffness & $0.3 \times 10^6$ N/m \\
-		$k_p$ & Primary suspension stiffness & $1.0 \times 10^6$ N/m \\
-		$k_t$ & Track stiffness (at sleeper) & 80,000 kN/m \\
-		$F_{\text{static}}$ & Static wheel load & 100 kN \\
+		$m_1$ & Primary mass & 1000 kg \\
+		$m_2$ & Secondary mass & 100 kg \\
+		$k$ & Stiffness & $1 \times 10^5$ N/m \\
+		$c$ & Damping & 1000 Ns/m \\
+		$F_0$ & Load amplitude & 1000 N \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
-\section{Influence of Train Speed}
-\label{sec:speed_influence}
+\section{Parameter Variations}
+\label{sec:param_variations}
 
-\subsection{Quasi-Static Response}
-\label{subsec:quasistatic_speed}
+\subsection{Influence of Mass Ratio}
+\label{subsec:mass_ratio}
 
-Figure~\ref{fig:speed_quasistatic} shows the maximum rail deflection as a function of train speed for a smooth track (no irregularities). The deflection increases slightly with speed due to dynamic amplification effects.
+Figure~\ref{fig:mass_ratio} shows the maximum response as a function of mass ratio $m_2/m_1$.
 
-% Placeholder for figure
 \begin{figure}[htbp]
 	\centering
-	\fbox{\parbox{0.8\textwidth}{\centering\vspace{5cm}[Rail deflection vs. speed]\vspace{5cm}}}
-	\caption{Maximum rail deflection versus train speed for smooth track}
-	\label{fig:speed_quasistatic}
-\end{figure}
-
-\subsection{Impact Forces}
-\label{subsec:impact_speed}
-
-When a sinusoidal irregularity with amplitude $a = 1$~mm and wavelength $\lambda = 1$~m is introduced, impact forces increase significantly with speed (Figure~\ref{fig:speed_impact}).
-
-% Placeholder for figure
-\begin{figure}[htbp]
-	\centering
-	\fbox{\parbox{0.8\textwidth}{\centering\vspace{5cm}[Impact force vs. speed]\vspace{5cm}}}
-	\caption{Maximum contact force versus train speed for track with irregularity}
-	\label{fig:speed_impact}
+	\fbox{\parbox{0.8\textwidth}{\centering\vspace{5cm}[Response vs. mass ratio]\vspace{5cm}}}
+	\caption{System response versus mass ratio}
+	\label{fig:mass_ratio}
 \end{figure}
 
 Key findings:
 \begin{itemize}
-	\item Impact forces increase approximately quadratically with speed
-	\item Peak forces occur when the excitation frequency matches wheelset natural frequency
-	\item At 200~km/h, impact forces reach 2.5 times the static load
+	\item Response increases with decreasing mass ratio
+	\item Optimal ratio exists around 0.1--0.2
+	\item Very small ratios lead to instability
 \end{itemize}
 
-\section{Influence of Track Stiffness}
-\label{sec:stiffness_influence}
+\subsection{Influence of Damping}
+\label{subsec:damping}
 
-Track stiffness has a significant influence on both static deflections and dynamic behavior.
-
-\subsection{Static Deflection}
-\label{subsec:static_deflection}
-
-Softer tracks exhibit larger deflections but also provide more damping, potentially reducing impact forces. Figure~\ref{fig:stiffness_deflection} shows the relationship.
-
-% Placeholder for figure
-\begin{figure}[htbp]
-	\centering
-	\fbox{\parbox{0.8\textwidth}{\centering\vspace{5cm}[Deflection vs. stiffness]\vspace{5cm}}}
-	\caption{Rail deflection versus track stiffness}
-	\label{fig:stiffness_deflection}
-\end{figure}
-
-\subsection{Dynamic Amplification}
-\label{subsec:daf_stiffness}
-
-The dynamic amplification factor varies with track stiffness:
+Damping significantly affects peak response:
 
 \begin{table}[htbp]
 	\centering
-	\caption{Dynamic amplification factor for different track stiffnesses}
-	\label{tab:daf_stiffness}
-	\begin{tabular}{ccc}
+	\caption{Peak response for different damping values}
+	\label{tab:damping}
+	\begin{tabular}{cc}
 		\toprule
-		Track stiffness [kN/m] & DAF at 160 km/h & DAF at 200 km/h \\
+		Damping ratio $\zeta$ & Peak response [mm] \\
 		\midrule
-		40,000 & 1.15 & 1.32 \\
-		60,000 & 1.22 & 1.45 \\
-		80,000 & 1.28 & 1.58 \\
-		100,000 & 1.35 & 1.72 \\
+		0.01 & 25.4 \\
+		0.05 & 12.8 \\
+		0.10 & 8.2 \\
+		0.20 & 5.1 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
-\section{Influence of Irregularity Characteristics}
-\label{sec:irregularity_influence}
-
-\subsection{Wavelength Effect}
-\label{subsec:wavelength}
-
-The wavelength of irregularities determines which system modes are excited:
-
-\begin{itemize}
-	\item \textbf{Long wavelengths (> 10~m):} Primarily excite car body and bogie modes
-	\item \textbf{Medium wavelengths (1--10~m):} Excite wheelset bouncing mode
-	\item \textbf{Short wavelengths (< 1~m):} Generate high-frequency impacts
-\end{itemize}
-
-Figure~\ref{fig:wavelength_impact} shows the maximum impact force as a function of irregularity wavelength for constant amplitude.
-
-% Placeholder for figure
-\begin{figure}[htbp]
-	\centering
-	\fbox{\parbox{0.8\textwidth}{\centering\vspace{5cm}[Impact force vs. wavelength]\vspace{5cm}}}
-	\caption{Maximum impact force versus irregularity wavelength}
-	\label{fig:wavelength_impact}
-\end{figure}
-
-\subsection{Amplitude Effect}
-\label{subsec:amplitude}
-
-Impact forces scale approximately linearly with irregularity amplitude for small amplitudes (< 2~mm). For larger amplitudes, nonlinear effects become important due to:
-\begin{itemize}
-	\item Nonlinear contact stiffness (Hertzian contact)
-	\item Potential wheel-rail separation
-	\item Large displacement effects
-\end{itemize}
-
-\section{Influence of Vehicle Parameters}
-\label{sec:vehicle_params}
-
-\subsection{Unsprung Mass}
-\label{subsec:unsprung_mass}
-
-The unsprung mass (wheelset mass) has a direct influence on impact forces. Heavier wheelsets generate larger forces for the same irregularity:
-
-\begin{equation}
-	F_{\text{impact}} \propto m_w \omega^2 a
-	\label{eq:impact_scaling}
-\end{equation}
-
-where $\omega$ is the excitation frequency and $a$ is the irregularity amplitude.
-
-\subsection{Primary Suspension}
-\label{subsec:primary_suspension}
-
-Softer primary suspension can reduce impact forces but may lead to increased track damage due to larger relative displacements. An optimal stiffness exists that balances:
-\begin{itemize}
-	\item Impact force reduction
-	\item Wheel-rail contact quality
-	\item Vehicle stability
-\end{itemize}
-
-\section{Combined Effects}
-\label{sec:combined_effects}
-
-\subsection{Critical Operating Conditions}
-\label{subsec:critical_conditions}
-
-The combination of the following conditions leads to maximum impact forces:
-\begin{enumerate}
-	\item High train speed (> 200~km/h)
-	\item Stiff track (typical of new ballast)
-	\item Medium wavelength irregularities (0.5--2~m)
-	\item Heavy wheelsets (freight vehicles)
-\end{enumerate}
-
-\subsection{Design Envelope}
-\label{subsec:design_envelope}
-
-Based on the parameter studies, a design envelope for impact forces can be established:
-
-\begin{equation}
-	F_{\text{max}} = F_{\text{static}} \left(1 + \alpha \frac{v}{v_{\text{ref}}} \frac{a}{a_{\text{ref}}} \right)
-	\label{eq:design_envelope}
-\end{equation}
-
-where $\alpha$ is a calibration factor dependent on track stiffness and irregularity wavelength.
-
 \section{Frequency Domain Analysis}
 \label{sec:frequency_analysis}
 
-\subsection{Transfer Functions}
-\label{subsec:transfer_functions}
+Transfer functions reveal system frequency response characteristics:
 
-Transfer functions between irregularity input and contact force output reveal the system's frequency response:
-
-% Placeholder for figure
 \begin{figure}[htbp]
 	\centering
-	\fbox{\parbox{0.8\textwidth}{\centering\vspace{5cm}[Transfer function plot]\vspace{5cm}}}
-	\caption{Transfer function from track irregularity to wheel-rail contact force}
+	\fbox{\parbox{0.8\textwidth}{\centering\vspace{5cm}[Transfer function]\vspace{5cm}}}
+	\caption{System transfer function}
 	\label{fig:transfer_function}
 \end{figure}
 
-Peaks in the transfer function correspond to:
-\begin{itemize}
-	\item Wheelset bouncing frequency ($\approx$ 60 Hz)
-	\item Bogie bouncing frequency ($\approx$ 8 Hz)
-	\item Car body bouncing frequency ($\approx$ 1 Hz)
-\end{itemize}
+Peaks correspond to natural frequencies at approximately 8~Hz and 45~Hz.
 
-\subsection{Spectral Analysis}
-\label{subsec:spectral_analysis}
-
-Power spectral density analysis of contact forces shows energy concentration at characteristic frequencies, enabling identification of dominant excitation mechanisms.
-
-\section{Summary of Simulation Results}
+\section{Summary}
 \label{sec:sim_summary}
 
-The parameter studies reveal:
-
+Parameter studies reveal:
 \begin{enumerate}
-	\item Train speed is the most influential parameter for impact loads
-	\item Track stiffness affects both static and dynamic response significantly
-	\item Irregularity wavelength determines which system modes are excited
-	\item Unsprung mass should be minimized to reduce impact forces
-	\item Optimal primary suspension exists balancing multiple objectives
+	\item Mass ratio is critical for system performance
+	\item Damping effectively reduces peak responses
+	\item Frequency characteristics determine resonance behavior
 \end{enumerate}
-
-These insights guide the development of design recommendations presented in Chapter~\ref{ch:summary}.
