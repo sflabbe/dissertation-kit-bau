@@ -1,0 +1,208 @@
+% Document Options and Package Loading
+% This file contains all package imports and document settings
+
+% -------------------- Encoding and Language ------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,ngerman]{babel}
+
+% -------------------- Typography and Fonts ------------------------------
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage{microtype}
+
+% -------------------- Mathematics ------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% -------------------- Graphics and Figures ------------------------------
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+
+% -------------------- Tables ------------------------------
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{longtable}
+
+% -------------------- Algorithms ------------------------------
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% -------------------- Bibliography ------------------------------
+\usepackage{natbib}
+\bibliographystyle{myplaindin}
+
+% -------------------- Nomenclature ------------------------------
+\usepackage{nomencl}
+\makenomenclature
+\renewcommand{\nomname}{List of Abbreviations and Symbols}
+
+% -------------------- Hyperlinks and References ------------------------------
+\usepackage[
+	pdftex,
+	pdfauthor={\autor},
+	pdftitle={\pdftitle},
+	pdfsubject={Dissertation},
+	pdfkeywords={Optimization, Computational Methods, System Analysis},
+	pdfproducer={LaTeX},
+	pdfcreator={pdflatex},
+	colorlinks=true,
+	linkcolor=black,
+	citecolor=black,
+	urlcolor=blue,
+	bookmarks=true,
+	bookmarksnumbered=true,
+	bookmarksopen=true,
+	pdfpagemode=UseOutlines,
+	plainpages=false,
+	pdfpagelabels
+]{hyperref}
+
+% -------------------- Page Layout ------------------------------
+\usepackage{geometry}
+\geometry{
+	a5paper,
+	top=20mm,
+	bottom=20mm,
+	left=15mm,
+	right=15mm,
+	headheight=12pt,
+	footskip=12pt
+}
+
+% -------------------- Headers and Footers ------------------------------
+\usepackage[automark,headsepline]{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead{\headmark}
+\ohead{\pagemark}
+\automark[section]{chapter}
+
+% -------------------- Spacing ------------------------------
+\usepackage{setspace}
+\setstretch{1.2}
+
+% -------------------- Lists ------------------------------
+\usepackage{enumitem}
+\setlist{nosep}
+
+% -------------------- Captions ------------------------------
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{
+	format=plain,
+	labelfont=bf,
+	textfont=it,
+	justification=centering,
+	font=small
+}
+
+% -------------------- Units and Numbers ------------------------------
+\usepackage{siunitx}
+\sisetup{
+	locale=UK,
+	per-mode=symbol,
+	group-separator={,},
+	group-minimum-digits=4,
+	output-decimal-marker={.}
+}
+
+% -------------------- Source Code Listings ------------------------------
+\usepackage{listings}
+\lstset{
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	commentstyle=\color{green!60!black},
+	stringstyle=\color{red},
+	showstringspaces=false,
+	breaklines=true,
+	frame=single,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	captionpos=b
+}
+
+% -------------------- PDF Inclusion ------------------------------
+\usepackage{pdfpages}
+
+% -------------------- Quotes ------------------------------
+\usepackage{csquotes}
+
+% -------------------- Custom Commands ------------------------------
+
+% Vector notation
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+% Differential operators
+\newcommand{\diff}{\mathrm{d}}
+\newcommand{\Diff}{\mathrm{D}}
+
+% Common abbreviations
+\newcommand{\eg}{e.\,g.\xspace}
+\newcommand{\ie}{i.\,e.\xspace}
+\newcommand{\cf}{cf.\xspace}
+\newcommand{\etc}{etc.\xspace}
+
+% Math operators
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\diag}{diag}
+
+% -------------------- Theorem Environments ------------------------------
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+
+% -------------------- Chapter and Section Formatting ------------------------------
+\setkomafont{chapter}{\normalfont\LARGE\bfseries}
+\setkomafont{section}{\normalfont\Large\bfseries}
+\setkomafont{subsection}{\normalfont\large\bfseries}
+\setkomafont{subsubsection}{\normalfont\normalsize\bfseries}
+
+% -------------------- TOC Depth ------------------------------
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+% -------------------- Float Placement ------------------------------
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.85}
+
+% -------------------- Hyphenation ------------------------------
+\hyphenation{
+	mathe-matics
+	geo-metry
+	para-meter
+	simu-lation
+	opti-mi-zation
+}
+
+% -------------------- Additional Packages ------------------------------
+\usepackage{xspace}
+\usepackage{ifthen}
+\usepackage{calc}
+
+% -------------------- TikZ Libraries ------------------------------
+\usetikzlibrary{
+	arrows,
+	shapes,
+	positioning,
+	decorations.pathreplacing,
+	calc,
+	patterns
+}

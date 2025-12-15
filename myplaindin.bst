@@ -1,190 +1,120 @@
-%%  PLAINDIN.BST            Ausgabe [8.2]   2006-01-02
-%%  mit doi-, urn-, url-Funktionen fuer Internetressourcen
-%%       ersetzt PLAINDIN.BST   Ausgabe [8.1b3] 22.2.2005
+%% PLAINDIN.BST - BibTeX style for DIN 1505 compliance
+%% Version [8.2] 2006-01-02
+%% Modified version with doi-, urn-, url-functions for internet resources
 %%
+%% Author: K.F. Lorenzen (Copyright 1994-2006)
+%% Email: lorenzen.marxen@t-online.de
+%% URL: http://www.haw-hamburg.de/pers/Lorenzen/bibtex/
 %%
-%%   K.F.Lorenzen  (Copyright 1994-2006)  email:  lorenzen.marxen@t-online.de
-%%  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%%  PLAINDIN.BST wurde entwickelt aus Oren Patashnik's BibTeX standard
-%%  bibliography style `plain'. Dadurch ist es moeglich, eine vorgegebene
-%%  Literaturdatenbank ohne Aenderungen beliebig nach Us- oder deutscher
-%%  Zitierkonvention zu verarbeiten.
-%%  Mit PLAINDIN.BST werden Literaturverzeichnisse gemaess der deutschen
-%%  Zitiernorm DIN 1505 Teil 2 formatiert.
-%%  Analog zu den 4 US standard styles wird ein vollstaendiger Satz von
-%%  4 DIN-gerechten bst-style Dateien veroeffentlicht (alphadin.bst,
-%%  plaindin.bst, unsrtdin.bst, abbrvdin.bst). Die gueltige Version
-%%  ist am schnellsten aus dem WWW ueber folgende URL zu beziehen
-%%            http://www.haw-hamburg.de/pers/Lorenzen/bibtex/
-%%            Stand: 2006-01-02
-%%  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%%  WAS IST PLAINDIN.BST ?
-%%  Dieser style produziert Literaturzitate in Literaturverzeichnissen
-%%  gemaess der deutschen Norm DIN 1505, Teil 2 vom Jan. 1984.
-%%  Die Literaturzitate werden alphabetisch nach Verfassern sortiert
-%%  und fortlaufend in eckigen Klammern gezaehlt. Die vorliegenden DIN-styles
-%%  gehen ueber die bibliographischen Beschraenkungen der Originalstyles hinaus.
-%
-%%  Es werden nun auch Elektronische Online / Offline Ressourcen wie Internet-
-%%  quellen, CD-ROM usw. verarbeitet. Dazu kommen besondere Publikationsformen
-%%  wie Patente, Normen, Karten, Fernsehaufzeichnungen, Gesetzesstellen, Spiele.
-%
-%%  Zur Gewaehrleistung der Allgemeingueltigkeit von bib-files gelten in den
-%%  DIN-styles die in der Tex-Literatur veroeffentlichten originalen
-%%  Definitionen und Regeln fuer die Publikationstypen (entry-types) und die
-%%  bibliographischen Felder (fields).
-%%  Treten kleinere "Schoenheitsfehler" im fertig gesetzten output auf,
-%%  lassen sich diese so gut wie immer durch eine veraenderte
-%%  Erfassung im bib-inputfile beseitigen. Oren Patashnik empfiehlt, die
-%%  Definition der Felder weit auszulegen. Last but not least koennen
-%%  Sie im output-file < *.bbl > noch letzte Hand zur Korrektur ansetzen.
-%
-%%  WARN- UND FEHLERMELDUNGEN
-%%  Ursache von Warnmeldungen sind meistens fehlende Felder oder
-%%  Erfassungs-"Fehler". Letztere haengen teilweise mit den gegenueber US-
-%%  Gepflogenheiten andersartigen bibliographischen Regeln nach DIN 1505
-%%  zusammen. Sie sind also in Wahrheit keine "Fehler" und duerfen fast immer
-%%  ignoriert werden. Dennoch pruefen Sie diese Warnungen, um heraus zu finden,
-%%  ob Publikationstyp (=entry-type) und "fields" eventuell unzulaessig
-%%  kombiniert worden sind.
-%%  Echte Fehler ("errors") treten nur noch in Verbindung mit falscher
-%%  Erfassung auf (nach meinen Tests!). Pruefen Sie die Syntax, den entry-type
-%%  und die fields.
-%%  Zu guter letzt: Qualitaetsmasstab ist einzig der DIN-konforme output!
+%% DESCRIPTION:
+%% This style produces bibliographies according to German standard DIN 1505 Part 2 (Jan. 1984).
+%% Citations are sorted alphabetically by author and numbered sequentially in square brackets.
+%% Developed from Oren Patashnik's BibTeX standard bibliography style 'plain'.
+%% Complete set: alphadin.bst, plaindin.bst, unsrtdin.bst, abbrvdin.bst
 %%
-%%  DANKSAGUNG
-%%  Hartmut Lueddecke, HAW Hamburg, hat viele Verbesserungsvorschlaege
-%%  in die frueheren Versionen eingebracht. Ihm danke ich herzlich.
-%%  Patrick W. Daly, dem Entwickler des Natbib-Stils, verdanke ich viele
-%%  Anregungen und den steten Ansporn, die DIN-Stile zu verbessern.
-%%  Viele an dieser Stelle ungenannt bleibende Anwender haben mich in
-%%  den vergangenen Jahren auf Fehler oder Verbesserungsmoeglichkeiten
-%%  aufmerksam gemacht und so diesen Stil mitentwickelt. Ihnen gilt mein
-%%  besonderer Dank. Ihr Feedback ist immer willkommen und eine Ermunterung.
+%% FEATURES:
+%% - Supports electronic resources (online/offline): Internet sources, CD-ROM, etc.
+%% - Handles special publication types: patents, standards, maps, laws, games, etc.
+%% - Additional fields for digital media: doi, url, urn, lastchecked
+%% - Use BOOKLET type for internet sources, MISC type for standards/patents
 %%
-%%  Klaus F. Lorenzen
+%% COPYRIGHT & LICENSE:
+%% Version 0.99c for BibTeX versions 0.99c or later, LaTeX2e
+%% Copyright (C) 1985, all rights reserved.
+%% Copying authorized only if either:
+%%   (1) You make absolutely no changes to your copy, including name, or
+%%   (2) If you do make changes, you rename it (not plaindin.bst, unsrtdin.bst, alphadin.bst, abbrvdin.bst)
+%% This restriction helps ensure that all standard styles are identical.
 %%
+%% ACKNOWLEDGMENTS:
+%% Thanks to Hartmut Lueddecke (HAW Hamburg), Patrick W. Daly (natbib developer),
+%% and many users who provided feedback and improvements over the years.
 %%
-%%
-%%  HINWEIS: Neben den vier bibliographischen DIN 1505 Standard-Stilen
-%%           nach den Original-styles von Oren Patashnik
-%%           gibt es zusaetzlich vier DIN 1505 Modifikationen der style
-%%           Emulationen des NATBIB-Pakets von Patrick W.Daly.
-%%           In den NATBIB-Modifikationen werden jetzt alle von P.W. Daly
-%%           implementierten Zitierweisen des Autor-Jahr-Stils unterstuetzt.
-%%           Damit erhaelt der Anwender eine weit ueber die urspruenglichen
-%%           Standardstyles hinausreichende Flexibilitaet beim Zitieren.
-%%           Naeheres unter URL http://www.haw-hamburg.de/pers/Lorenzen/bibtex/
-%%
-%%
-%%  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%       version 0.99c for BibTeX versions 0.99c or later, LaTeX2e
-%       Copyright (C) 1985, all rights reserved.
-%       Copying of this file is authorized only if either
-%       (1) you make absolutely no changes to your copy, including name, or
-%       (2) if you do make changes, you name it something other than
-%       plaindin.bst, unsrtdin.bst, alphadin.bst, and abbrvdin.bst.
-%       This restriction helps ensure that all standard styles are identical.
-%       The file btxbst.doc has the original documentation for style 'alpha'.
-%%
-%%  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%%
-%%  NEUE FELDER
-%%  Zur Erfassung der neuen digitalen Online-Medien z.B. Internetquellen, E-journals, E-books,
-%%  E-mail u.a. gibt es die zusaetzlichen Felder: doi, url, urn, lastchecked
-%%  Internetquellen werden vorzugsweise mit dem BOOKLET-Typ erfasst.
-%%  Normen, Patente, Schutzrechte sind mit dem MISC-Typ zu erfassen.
-%
-%
+%%=============================================================================
+
+
+%% BibTeX entry fields
 ENTRY
-  { address      %%  Verlagsort
-    author       %%  persoenlicher Urheber eines Werkes
-    booktitle    %%  a) Gesamttitel eines mehrbaendigen Werkes
-%                %%  b) Titel des Sammelwerks, das einzelne selbstaendige
-%                %%     Beitraege mit eigenem Titel enthaelt (->incollection)
-    chapter      %%  Kapitel in einem Buch (Monographie)
-    doi          %%% Digital Object Identifier
-    edition      %%  Auflagevermerk; bei selbst. elektron. Dok. == Version
-    editor       %%  Persoenl.Herausgeber oder Koerperschaftlicher Herausgeber
-    howpublished %%  beliebiger Verlegervermerk: von wem, wo
-    institution  %%  Institution, die e.Verlagsfreie Veroeffentlichung betreibt
-    isbn         %%  Standardnr fuer Buecher
-    issn         %%  - " -    :      Zeitschriften u. Serien
-    journal      %%  Titel einer Zeitschrift
-    key          %%  Zusaetzlich vergebener Sortierschluessel, mitunter notwend.
-    lastchecked  %%  Online Abruf einer Internetquelle ( GRAY ); 22.1.2004
-    month        %%  naehere Bestimmung des Erscheinungsjahres (-> macro 's)
-    note         %%  freies Eingabefeld fuer zusaetzliche Informationen
-    number       %%  Mehrfachbedeutung in Abhaengigkeit vom Eingabetyp
-    organization %%  a) Name der Organisation/des Organisators e. Tagung,Konferenz
-%                %%  b) Name einer Firma/Gesellschaft, die ein ->manual herausgab
-    pages        %%  Umfangsangaben, meist Seitenzahlen
-    publisher    %%  Verlag
-    school       %%  Hochschule/Universitaet, die eine Dipl.-Arb./Dissertation veroeff.
-    series       %%  Titel e.Reihe, in der ein best. Buchtitel erschienen ist
-    title        %%  Titel einer (namentlich gekennzeichneten) Veroeffentlichung
-    type         %%  Zusatzfeld z.Kennzeichnung e.besonderen Publikationstyps
-    url          %%%  Internet-Adresse URL ( Uniform Resource Locator )
-    urn          %%   Persistent Identifier URN ( Uniform Resource Name )
-    volume       %%  a) Zaehlung bei einem mehrbaendigen Werk (-> book)
-%                %%  b) Jahrgang einer Zeitschrift (-> article
-    year         %%  Erscheinungsjahr
+  { address      %% Publisher location
+    author       %% Personal author(s) of the work
+    booktitle    %% Title of collection or multi-volume work
+    chapter      %% Chapter number in a book
+    doi          %% Digital Object Identifier
+    edition      %% Edition (or version for electronic documents)
+    editor       %% Editor(s) or corporate editor
+    howpublished %% Custom publication information
+    institution  %% Institution for technical reports
+    isbn         %% ISBN for books
+    issn         %% ISSN for journals and serials
+    journal      %% Journal name
+    key          %% Sorting key (sometimes needed)
+    lastchecked  %% Date of online resource retrieval
+    month        %% Month of publication (use macros)
+    note         %% Free-form field for additional information
+    number       %% Issue number (context-dependent)
+    organization %% Conference organizer or manual publisher
+    pages        %% Page numbers or extent
+    publisher    %% Publisher name
+    school       %% University for thesis/dissertation
+    series       %% Series title
+    title        %% Publication title
+    type         %% Special publication type designation
+    url          %% URL (Uniform Resource Locator)
+    urn          %% URN (Uniform Resource Name) persistent identifier
+    volume       %% Volume number
+    year         %% Publication year
   }
   {}
   { label extra.label sort.label }
 
-%% Variablen-Vereinbarungen
+%%=============================================================================
+%% Variable declarations
+%%=============================================================================
 
+%% Output state variables
 INTEGERS { output.state before.all mid.sentence after.sentence after.block }
-
 INTEGERS { colon.after  period.dash }
-
 INTEGERS { after.firstblock }
 
-%% fuer die Namensbehandlung
-
+%% Variables for name handling
 INTEGERS { zahl  lang }
-
 INTEGERS { nameptr namesleft numnames }
-
 INTEGERS { ptr collation collrest }
 
-%% fuer die Sortierung bei der label-Produktion
+%% Variables for sorting and label production
 INTEGERS { len }
-
 INTEGERS { number.label longest.label.width }
-%%----------------------------------------------------------------------
 
+%% String variables for temporary storage
 STRINGS { h s t u v w }
 
-%% bei der Behandlung der Namen-Funktionsbezeichnung (Hrsg., Redakt., usw)
+%% String for name function designation (editor, etc.)
 STRINGS { fkt }
 
-%% fuer die label-Produktion
+%% String for label production
 STRINGS { longest.label }
 
-%%%----------------------------------------------------------------------------
-%  Einige Standardvorgaben, die vom Benutzer veraendert werden koennen.
-%%%----------------------------------------------------------------------------
+%%=============================================================================
+%% User-customizable settings
+%%=============================================================================
 
-%  Abkuerzung ("... und andere") bei Mehrverfasserquellen:
+%% Abbreviation for "and others" in multi-author citations
+FUNCTION { ua.etal } { " u.\,a." }  %% German: "und andere"
+                                    %% Alternative: " et~al." (Latin)
+                                    %% Alternative: " [u.\,a.]" (in brackets)
 
-FUNCTION { ua.etal } { " u.\,a." } %% evtl. auch in eckigen Klammern " [u.\,a.]"
+%% Word for "and" in author lists
+FUNCTION { und } { " u. " }  %% German abbreviation
+                             %% Alternative: " und " (full word)
 
-%%  oder lateinisch:  FUNCTION { ua.etal } { " et~al." }
+%% Supplementary designation for electronic media (DIN 1505)
+FUNCTION { eress } { "Elektronische Ressource" }  %% Electronic resource
 
-FUNCTION { und } { " u. " }
+%%=============================================================================
+%% Core functions
+%%=============================================================================
 
-%%  oder ausgeschrieben:  FUNCTION { und } { " und " }
-%
-% Einige elektronische Medien erhalten nach DIN 1505 eine "Ergaenzende Angabe"
-% zusaetzlich zum materiellen Typ, z.B. CD ROM oder DVD u.a.:
-
-FUNCTION { eress } { "Elektronische Ressource" }
-
-%%%-----------------------------------------------------------------------------------
-
-
+%% Initialize output state constants
 FUNCTION {init.state.consts}
 { #0 'before.all :=
   #1 'mid.sentence :=
@@ -378,15 +308,19 @@ FUNCTION {article.in.journal}
   if$
 }
 
+%%=============================================================================
+%% Formatting functions for URLs, DOIs, and URNs
+%%=============================================================================
+
+%% Format DOI as URL using modern https://doi.org/ prefix
 FUNCTION {format.doi}
 { doi empty$
     { "" }
-    { new.block "\url{http://dx.doi.org/" doi * "}" *
-     %%      { new.block "\url{http://dx.medra.org/" doi * "}" *
-    }
+    { new.block "\url{https://doi.org/" doi * "}" * }
   if$
 }
 
+%% Format URL or URN (prefers URN over DOI over URL)
 FUNCTION {format.url}
 { urn missing$
      { doi missing$
@@ -434,8 +368,12 @@ FUNCTION {format.maillist.url}
       if$
    }
 
-%% Adelspraedikate beim Sortieren nach den(m) Vornamen auffuehren
-%% Abweichend v. DIN !!!
+%%=============================================================================
+%% Name formatting functions
+%%=============================================================================
+
+%% Format author/editor names
+%% Note: Noble titles sorted by first name (deviates from DIN standard)
 FUNCTION {format.names}
 { 's :=
   "" 'u  :=
@@ -582,10 +520,15 @@ FUNCTION {format.ed.incoll}
 }
 
 
+%%=============================================================================
+%% Title formatting functions
+%%=============================================================================
+
+%% Format plain title (as entered in title field)
 FUNCTION {format.title}
 { title empty$
     { "" }
-    { title }  %% Text so wie er dasteht im Feld title
+    { title }
   if$
 }
 
@@ -1266,6 +1209,11 @@ FUNCTION {format.incoll.inproc.crossref}
 }
 
 
+%%=============================================================================
+%% Entry type formatting functions
+%%=============================================================================
+
+%% Format ARTICLE entry (journal article)
 FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
@@ -1290,6 +1238,7 @@ FUNCTION {article}
   fin.entry
 }
 
+%% Format BOOK entry
 FUNCTION {book}
 { output.bibitem
   author empty$
@@ -1326,6 +1275,7 @@ FUNCTION {book}
   fin.entry
 }
 
+%% Format BOOKLET entry (for bound work without formal publisher)
 FUNCTION {booklet}
 { output.bibitem
   author empty$
@@ -1358,6 +1308,7 @@ FUNCTION {booklet}
 }
 
 
+%% Format INBOOK entry (chapter or section in a book)
 FUNCTION {inbook}
 { output.bibitem
     chapter format.chapter.inbook output.nonnull
@@ -1387,6 +1338,7 @@ FUNCTION {inbook}
   fin.entry
 }
 
+%% Format INCOLLECTION entry (titled section in a collection)
 FUNCTION {incollection}
 { output.bibitem
   format.authors "author" output.check
@@ -1428,6 +1380,7 @@ FUNCTION {incollection}
 }
 
 
+%% Format INPROCEEDINGS entry (conference paper)
 FUNCTION {inproceedings}
 { output.bibitem
   format.authors "author" output.check
@@ -1461,8 +1414,10 @@ FUNCTION {inproceedings}
   fin.entry
 }
 
-FUNCTION {conference} { inproceedings }%% nach Patashnik, wg US-Kompatibilitaet
+%% CONFERENCE is an alias for INPROCEEDINGS (US compatibility per Patashnik)
+FUNCTION {conference} { inproceedings }
 
+%% Format MANUAL entry (technical documentation)
 FUNCTION {manual}
 { output.bibitem
   author empty$
@@ -1514,8 +1469,8 @@ FUNCTION {manual}
   fin.entry
 }
 
-%%  Standard ist "Diplomarbeit", anderes mit TYPE="anderer Typ" erfassen!
-%%  z.B. TYPE={Hausarbeit}, TYPE={Diss.}, TYPE={Habil.}, TYPE={Magisterarb.}
+%% Format MASTERSTHESIS entry (default: "Diplomarbeit")
+%% Use TYPE field to override, e.g., TYPE={Hausarbeit}, TYPE={Magisterarb.}
 FUNCTION {mastersthesis}
 { output.bibitem
   format.authors "author" output.check
@@ -1547,7 +1502,9 @@ FUNCTION {mastersthesis}
   fin.entry
 }
 
-FUNCTION {phdthesis} %%  {mastersthesis}% ist identisch bis auf Standardwert, s.o.
+%% Format PHDTHESIS entry (default: "Diss.")
+%% Identical to mastersthesis except for default TYPE value
+FUNCTION {phdthesis}
 { output.bibitem
   format.authors "author" output.check
   set.colon.after
@@ -1579,9 +1536,11 @@ FUNCTION {phdthesis} %%  {mastersthesis}% ist identisch bis auf Standardwert, s.
 }
 
 
-%% Normen, Vornormen, Schutzrechte (Patente) werden hiermit erfasst;
-%% (z.Zt. auch noch Internetressourcen)
-%% das type-Feld uebernimmt eine wichtige Steuerfunktion:
+%% Format MISC entry (standards, patents, and other miscellaneous types)
+%% The TYPE field is critical for controlling formatting:
+%%   - "Norm" or "Vorn": standards and pre-standards
+%%   - "Schutz": patents and intellectual property
+%%   - Other: general miscellaneous items and internet resources
 FUNCTION {misc}
 { output.bibitem
    type missing$ not
@@ -1651,7 +1610,7 @@ FUNCTION {misc}
                  format.online.lastcheck
                  new.sentence
                  format.misc.series output
-%%                 note set.period.dash.check
+                 note set.period.dash.check
                  note output
                 }
               if$
@@ -1660,7 +1619,7 @@ FUNCTION {misc}
           }
         if$
        }
-       %% wenn es keinen type gibt
+       %% If there is no type field
        { title empty$
              { note empty$
                  { url empty$
@@ -1714,6 +1673,7 @@ FUNCTION {misc}
  fin.entry
 }
 
+%% Format PROCEEDINGS entry (conference proceedings)
 FUNCTION {proceedings}
 { output.bibitem
     editor empty$
@@ -1747,6 +1707,7 @@ FUNCTION {proceedings}
   fin.entry
 }
 
+%% Format TECHREPORT entry (technical report)
 FUNCTION {techreport}
 { output.bibitem
   author empty$
@@ -1789,11 +1750,16 @@ FUNCTION {techreport}
 }
 
 
-FUNCTION {unpublished} {misc}%%       AUTHOR, TITLE, NOTE muessen sein!
-%%                                    andere Felder sind optional
+%% UNPUBLISHED is an alias for MISC
+%% Required fields: AUTHOR, TITLE, NOTE; other fields optional
+FUNCTION {unpublished} {misc}
 
+%% Default entry type if type is unrecognized
 FUNCTION {default.type} { misc }
 
+%%=============================================================================
+%% Month macros (German)
+%%=============================================================================
 
 MACRO {jan} {"Januar"}
 
@@ -1825,14 +1791,13 @@ MACRO {dez} {"Dezember"}
 
 MACRO {dec} {"Dezember"}
 
-%%$$$  stillgelegte Beispiele fuer den Gebrauch von Kuerzeln (hier Zs-Titel).
-
-%%MACRO {acmcs} {"ACM Computing Surveys"}
-
-%%MACRO {acta} {"Acta Informatica"}
+%%=============================================================================
+%% Sorting and labeling functions
+%%=============================================================================
 
 READ
 
+%% Convert string to lowercase for sorting
 FUNCTION {sortify}
 { purify$
   "l" change.case$
@@ -1986,7 +1951,12 @@ ITERATE {presort}
 
 SORT
 
-FUNCTION {initialize.longest.label}%% nicht identisch mit der Fkt.im ALPHA-Stil
+%%=============================================================================
+%% Label generation and bibliography output
+%%=============================================================================
+
+%% Initialize longest label tracking (differs from ALPHA style)
+FUNCTION {initialize.longest.label}
 { "" 'longest.label :=
   #1 'number.label :=
   #0 'longest.label.width :=
