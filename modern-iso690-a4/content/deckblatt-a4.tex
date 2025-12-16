@@ -8,11 +8,13 @@
 %
 % Required macros (define in main file):
 %   \headtitle       - Thesis title (allows manual line breaks with \\)
+%   \gradintro       - Intro text before degree (e.g., "Zur Erlangung des akademischen Grades")
 %   \doktorgrad      - Exact string: DOKTOR-INGENIEURS or DOKTOR-INGENIEURIN
 %   \facultyname     - Faculty name ONLY (e.g., "Bauingenieur-, Geo- und Umweltwissenschaften")
 %   \institutname    - Institute name WITHOUT "des" (e.g., "Karlsruher Instituts für Technologie (KIT)")
 %   \submissiontype  - "genehmigte" (approved) or "eingereichte" (submitted)
-%   \authorname      - Full author name including academic suffix (e.g., "Max Mustermann M.Sc.")
+%   \authorname      - Author name only (e.g., "Max Mustermann" or "[Vorname Nachname]")
+%   \authordegree    - Academic suffix (e.g., "M.Sc.", "Dipl.-Ing.")
 %   \birthline       - Birth info: "geb. in [Stadt]" or "aus [Geburtsort, Land]"
 %   \defensedate     - Defense date (optional, hide if empty)
 %   \referee         - Main referee (optional, hide if empty)
@@ -32,12 +34,14 @@
 \ifdefined\singlespacing\singlespacing\fi
 
 % fallbacks (so template compiles even if main file forgot macros)
-\providecommand{\doktorgrad}{DOKTOR-INGENIEURIN}
+\providecommand{\gradintro}{Zur Erlangung des akademischen Grades}
+\providecommand{\doktorgrad}{DOKTOR-INGENIEURS}
 \providecommand{\facultyname}{Bauingenieur-, Geo- und Umweltwissenschaften}
 \providecommand{\institutname}{Karlsruher Instituts für Technologie (KIT)}
 \providecommand{\submissiontype}{genehmigte}
-\providecommand{\authorname}{Author Name}
-\providecommand{\birthline}{geb. in Karlsruhe}
+\providecommand{\authorname}{[Vorname Nachname]}
+\providecommand{\authordegree}{M.Sc.}
+\providecommand{\birthline}{aus [Geburtsort, Land]}
 \providecommand{\defensedate}{}
 \providecommand{\referee}{}
 \providecommand{\coreferee}{}
@@ -56,7 +60,7 @@
 
 \vspace{1.7cm} % TUNE: 1.4–1.8cm - adjusted for higher title
 
-{\fontsize{9.5}{11.5}\selectfont Zur Erlangung des akademischen Grades einer\par}
+{\fontsize{9.5}{11.5}\selectfont \gradintro\space einer\par}
 \vspace{0.65cm}
 {\fontsize{12}{14}\selectfont\bfseries \doktorgrad\par}
 
@@ -79,19 +83,30 @@ des \institutname\par
 
 {\fontsize{9.5}{11.5}\selectfont von\par}
 \vspace{0.4cm}
-{\fontsize{12}{14}\selectfont \authorname\par}
+{\fontsize{12}{14}\selectfont \authorname\space\authordegree\par}
 \vspace{0.2cm}
 {\fontsize{9.5}{11.5}\selectfont \birthline\par}
 
 \vfill
 
+% Bottom block: only show if at least one field is non-empty
+% Use tabular* with fixed column widths so right column doesn't hug page edge
+% Check if ANY of the three fields is non-empty
+\newif\ifshowbottom
+\showbottomfalse
+\ifx\defensedate\empty\else\showbottomtrue\fi
+\ifx\referee\empty\else\showbottomtrue\fi
+\ifx\coreferee\empty\else\showbottomtrue\fi
+
+\ifshowbottom
 {\fontsize{9.5}{11.5}\selectfont
 \noindent
-\begin{tabular}{@{}p{0.58\textwidth}@{}l@{}}
+\begin{tabular*}{\textwidth}{@{}p{0.63\textwidth}@{}p{0.35\textwidth}@{}}
 \ifx\defensedate\empty\else Tag der mündlichen Prüfung: & \defensedate\\\fi
 \ifx\referee\empty\else Hauptreferent: & \referee\\\fi
 \ifx\coreferee\empty\else Korreferent: & \coreferee\\\fi
-\end{tabular}\par}
+\end{tabular*}\par}
+\fi
 
 \vspace*{0.0cm} % IMPORTANT: keep near zero so bottom block sits low
 \endgroup
