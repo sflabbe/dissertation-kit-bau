@@ -34,17 +34,34 @@
 
 % Deckblatt (title page) macros - precisely matched to KIT Bau example layout
 % NOTE: Replace these placeholder values with your actual information
-\newcommand{\doktorgrad}{DOKTOR-INGENIEURIN}              % or DOKTOR-INGENIEURS
+\newcommand{\gradintro}{Zur Erlangung des akademischen Grades}  % Intro text before degree
+\newcommand{\doktorgrad}{DOKTOR-INGENIEURS}               % or DOKTOR-INGENIEURIN
 \newcommand{\facultyname}{Bauingenieur-, Geo- und Umweltwissenschaften}
 \newcommand{\institutname}{Karlsruher Instituts für Technologie (KIT)}  % Note: genitive case "Instituts"
 \newcommand{\submissiontype}{genehmigte}                  % or "eingereichte" for submission
-\newcommand{\authorname}{Anna Schmidt M.Sc.}              % Full name with academic suffix
-\newcommand{\birthline}{geb. in Stuttgart}                % or "aus [Geburtsort, Land]"
+\newcommand{\authorname}{[Vorname Nachname]}              % Full author name (placeholder)
+\newcommand{\authordegree}{M.Sc.}                         % Academic degree suffix (e.g., M.Sc., Dipl.-Ing.)
+\newcommand{\birthline}{aus [Geburtsort, Land]}           % Birth info: "geb. in [Stadt]" or "aus [Geburtsort, Land]"
 
 % Optional examination details (leave empty to hide from title page)
-\newcommand{\defensedate}{15. März 2025}                  % Defense date
-\newcommand{\referee}{Prof. Dr.-Ing. Hans Müller}         % Main referee
-\newcommand{\coreferee}{Prof. Dr.-Ing. Maria Weber}       % Co-referee
+\newcommand{\defensedate}{}                               % Defense date (e.g., "15. März 2025")
+\newcommand{\referee}{}                                   % Main referee (e.g., "Prof. Dr.-Ing. [Erstgutachter]")
+\newcommand{\coreferee}{}                                 % Co-referee (e.g., "Prof. Dr.-Ing. [Zweitgutachter]")
+
+% Example with filled values (uncomment and customize as needed):
+% \renewcommand{\authorname}{Max Mustermann}
+% \renewcommand{\authordegree}{M.Sc.}
+% \renewcommand{\birthline}{geb. in Karlsruhe, Deutschland}
+% \renewcommand{\defensedate}{15. März 2025}
+% \renewcommand{\referee}{Prof. Dr.-Ing. [Erstgutachter]}
+% \renewcommand{\coreferee}{Prof. Dr.-Ing. [Zweitgutachter]}
+
+% Multi-line title example (use manual line breaks with \\):
+% \renewcommand{\headtitle}{%
+%   Ein sehr langer Titel über mehrere Zeilen\\
+%   zur Demonstration der festen Titelhöhe\\
+%   in drei Zeilen%
+% }
 
 % Legacy macros (kept for backwards compatibility with older content files)
 \newcommand{\birthplace}{Karlsruhe}
