@@ -27,6 +27,22 @@
 \begin{titlepage}
 \thispagestyle{empty}
 %
+% CRITICAL GEOMETRY OVERRIDE: Force symmetric margins, zero bindingoffset, no head/foot space
+% This makes the titlepage layout INDEPENDENT of document-wide bindingoffset/header settings
+\newgeometry{
+  a4paper,
+  left=25mm,
+  right=25mm,
+  top=25mm,
+  bottom=25mm,
+  bindingoffset=0mm,
+  includehead=false,
+  includefoot=false,
+  headheight=0pt,
+  headsep=0pt,
+  footskip=0pt
+}
+%
 \begingroup
 \centering
 
@@ -103,7 +119,7 @@ des \institutname\par
 \ifx\coreferee\empty\else\showbottomtrue\fi
 
 \ifshowbottom
-{\fontsize{9.5}{11.5}\selectfont
+{\fontsize{10.5}{12.5}\selectfont
 \noindent
 \begin{tabular}{@{}p{0.58\textwidth}@{}l@{}}
 \ifx\defensedate\empty\else Tag der mündlichen Prüfung: & \defensedate\\\fi
