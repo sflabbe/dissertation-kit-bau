@@ -26,6 +26,23 @@
 
 \begin{titlepage}
 \thispagestyle{empty}
+%
+% CRITICAL GEOMETRY OVERRIDE: Force symmetric margins, zero bindingoffset, no head/foot space
+% This makes the titlepage layout INDEPENDENT of document-wide bindingoffset/header settings
+\newgeometry{
+  a4paper,
+  left=25mm,
+  right=25mm,
+  top=25mm,
+  bottom=25mm,
+  bindingoffset=0mm,
+  includehead=false,
+  includefoot=false,
+  headheight=0pt,
+  headsep=0pt,
+  footskip=0pt
+}
+%
 \begingroup
 \centering
 
@@ -110,4 +127,8 @@ des \institutname\par
 
 \vspace*{0.0cm} % IMPORTANT: keep near zero so bottom block sits low
 \endgroup
+%
+% Restore document geometry after titlepage
+\restoregeometry
+%
 \end{titlepage}
