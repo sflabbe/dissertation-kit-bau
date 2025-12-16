@@ -1,0 +1,31 @@
+% Minimal harness to compile ONLY the modern A4 deckblatt (for testing)
+% Compiles with: lualatex titlepage_modern_a4.tex
+\documentclass[a4paper,12pt,twoside,openright,numbers=noenddot]{scrbook}
+
+% Load the modern document options
+\input{../modern-iso690-a4/dokOptions-modern-a4.tex}
+
+% Dummy macros for titlepage (so it compiles standalone)
+\newcommand{\headtitle}{Entwicklung und Anwendung von Optimierungsverfahren\\für komplexe ingenieurwissenschaftliche Systeme}
+\newcommand{\gradintro}{Zur Erlangung des akademischen Grades}
+\newcommand{\doktorgrad}{DOKTOR-INGENIEURS}
+\newcommand{\facultyname}{Bauingenieur-, Geo- und Umweltwissenschaften}
+\newcommand{\institutname}{Karlsruher Instituts für Technologie (KIT)}
+\newcommand{\submissiontype}{genehmigte}
+\newcommand{\authorname}{Max Mustermann}
+\newcommand{\authordegree}{M.Sc.}
+\newcommand{\birthline}{geb. in Karlsruhe}
+\renewcommand{\defensedate}{15. März 2025}
+\renewcommand{\referee}{Prof. Dr.-Ing. Hans Schmidt}
+\renewcommand{\coreferee}{Prof. Dr.-Ing. Maria Müller}
+
+% Dummy variables for hyperref
+\newcommand{\autor}{Max Mustermann}
+\newcommand{\pdftitle}{Test Dissertation}
+
+\begin{document}
+
+% Include the modern deckblatt
+\input{../modern-iso690-a4/content/deckblatt-a4.tex}
+
+\end{document}

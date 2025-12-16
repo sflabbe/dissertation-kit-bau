@@ -46,7 +46,7 @@ legacy-din1505-a4/
 ├── dokOptions-a4.tex           # Package imports and settings
 ├── plaindin-upgraded.bst    # Fixed DIN 1505 bibliography style
 └── content/                 # Content files
-    ├── deckblatt.tex       # Title page
+    ├── deckblatt-a4.tex    # Title page (A4)
     ├── abstract.tex        # German abstract
     ├── abstractEN.tex      # English abstract
     ├── acknowledgment.tex  # Acknowledgments
@@ -85,3 +85,54 @@ Use this legacy A4 version if:
 - You're working with existing DIN 1505 bibliographies
 
 For modern projects with ISO 690 standard and Unicode support, see the `modern-iso690/` directory.
+
+## Deckblatt (Title Page) Geometry
+
+The A4 deckblatt (title page) uses a **geometry override** to ensure consistent, symmetric layout regardless of document-wide settings like `bindingoffset` and `headheight`.
+
+### Implementation Details
+
+The title page applies `\newgeometry` at the beginning and `\restoregeometry` at the end:
+
+```latex
+\begin{titlepage}
+\thispagestyle{empty}
+\newgeometry{
+  a4paper,
+  left=25mm,
+  right=25mm,
+  top=25mm,
+  bottom=25mm,
+  bindingoffset=0mm,      % Centered physically on page
+  includehead=false,      % No header space reserved
+  includefoot=false,      % No footer space reserved
+  headheight=0pt,
+  headsep=0pt,
+  footskip=0pt
+}
+% ... title page content ...
+\restoregeometry
+\end{titlepage}
+```
+
+### Why This Is Necessary
+
+Without the geometry override, the title page would be affected by:
+- **bindingoffset**: The document uses `bindingoffset=15mm` for double-sided printing, which would shift the title page content to the right
+- **headheight/headsep**: Even though the title page uses `\thispagestyle{empty}`, the space for headers is still reserved in the text block, causing vertical drift
+
+The override ensures:
+1. ✅ Title page is always centered physically on the A4 page
+2. ✅ Layout is stable regardless of document margin settings
+3. ✅ Visual consistency between legacy (pdfLaTeX) and modern (LuaLaTeX) versions
+
+### Testing
+
+To verify title page alignment, use the testing tools in the `tools/` directory:
+
+```bash
+cd tools
+./diff_deckblatt_a4.sh
+```
+
+This script compiles both legacy and modern title pages and creates a visual diff. See `tools/README.md` for details.
